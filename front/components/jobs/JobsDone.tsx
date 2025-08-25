@@ -133,7 +133,7 @@ const JobsDone = () => {
             onValueChange={(val) => setSelectedUnit(val)}
             style={styles.picker}
           >
-            <Picker.Item label="Toutes les unités" value="all" key="all" />
+            <Picker.Item label="Toutes les units" value="all" key="all" />
             {units.map((unit) => (
               <Picker.Item
                 label={unit.unit_name}
