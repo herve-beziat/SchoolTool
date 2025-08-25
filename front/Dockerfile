@@ -2,17 +2,16 @@ FROM node:18
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+# Copie les manifests + npmrc d'abord pour maximiser le cache
+COPY package.json package-lock.json .npmrc ./
 
-RUN npm install
+# Install déterministe (dev deps gardées pour Expo)
+RUN npm ci
 
+# Puis le reste du code
 COPY . .
-
-COPY .env .env
 
 EXPOSE 8081
 EXPOSE 19000 19001 19002
 
 CMD ["npx", "expo", "start", "--tunnel"]
-
-

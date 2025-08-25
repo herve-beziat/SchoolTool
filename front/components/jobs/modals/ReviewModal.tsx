@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import type { FC } from 'react';
 import {
   Modal,
   View,
@@ -111,10 +112,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 12,
+    color: '#e91e63',
   },
   label: {
     fontWeight: '600',
     marginTop: 12,
+    color: '#0084FA',
   },
   value: {
     marginBottom: 8,

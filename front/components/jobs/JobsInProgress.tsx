@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import { ApiActions } from '@/services/ApiServices';

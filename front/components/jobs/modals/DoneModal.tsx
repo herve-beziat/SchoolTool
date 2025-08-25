@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal, View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Button } from 'react-native-paper';
 import type { JobDone } from '@/types/jobsTypes';
