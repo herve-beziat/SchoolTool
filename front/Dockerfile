@@ -3,7 +3,7 @@ FROM node:18
 WORKDIR /app
 
 # Copie les manifests + npmrc d'abord pour maximiser le cache
-COPY package.json package-lock.json .npmrc ./
+COPY package.json package-lock.json ./
 
 # Install déterministe (dev deps gardées pour Expo)
 RUN npm ci
