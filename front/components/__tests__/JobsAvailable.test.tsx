@@ -48,7 +48,7 @@ describe('JobsAvailable', () => {
       expect(getByText('Développeur Frontend')).toBeTruthy();
     });
 
-    const picker = getByDisplayValue('Toutes les Units');
+    const picker = getByDisplayValue('Toutes les units');
     fireEvent(picker, 'valueChange', 'Unit 1');
 
     await waitFor(() => {
