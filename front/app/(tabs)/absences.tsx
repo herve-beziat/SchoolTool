@@ -1,7 +1,7 @@
-import React from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import UploadAbsences from '@/components/absences/AbsencesView';
 import Header from '@/components/global/Header';
+import { globalStyles } from '@/styles/globalStyles';
 
 export default function AbsencesMain() {
   return (

@@ -5,16 +5,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
-  ScrollView,
-  useWindowDimensions,
 } from 'react-native';
 import ProfileScreen from '@/components/profile/StudentProfile';
 import SkillScreen from '@/components/profile/StudentSkills';
 import Header from '@/components/global/Header';
+import { globalStyles } from '@/styles/globalStyles';
 
 const ProfileMain = () => {
   const [activeTab, setActiveTab] = useState('profile');
-  const { height } = useWindowDimensions();
 
   const renderComponent = () => {
     switch (activeTab) {
@@ -28,29 +26,26 @@ const ProfileMain = () => {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={globalStyles.mainContainer}>
       <Header />
-      <View style={styles.tabContainer}>
+      <View style={globalStyles.widgetNavContainer}>
         <TouchableOpacity
-          style={[styles.tab, activeTab === 'profile' && styles.activeTab]}
+          style={[globalStyles.widgetNavTab, activeTab === 'profile' && globalStyles.widgetNavActiveTab]}
           onPress={() => setActiveTab('profile')}
         >
           <Text style={styles.tabText}>Profil</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.tab, activeTab === 'skills' && styles.activeTab]}
+          style={[globalStyles.widgetNavTab, activeTab === 'skills' && globalStyles.widgetNavActiveTab]}
           onPress={() => setActiveTab('skills')}
         >
           <Text style={styles.tabText}>Compétences</Text>
         </TouchableOpacity>
       </View>
 
-      <ScrollView
-        contentContainerStyle={[styles.content, { minHeight: height }]}
-        bounces={false}
-      >
+      <View>
         {renderComponent()}
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
@@ -67,6 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
+    width: '100%',
   },
   tab: {
     paddingBottom: 10,

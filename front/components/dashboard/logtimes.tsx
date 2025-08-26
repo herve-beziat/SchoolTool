@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ActivityIndicator,
   TouchableOpacity,
   Dimensions,
@@ -11,9 +10,7 @@ import { BarChart } from 'react-native-chart-kit';
 import { ApiActions } from '@/services/ApiServices';
 import dayjs from 'dayjs';
 import type { Logtime } from '@/types/logtimesTypes';
-
-const screenWidth = Dimensions.get('window').width;
-const chartPadding = 20;
+import { globalStyles } from '@/styles/globalStyles';
 
 const Logtimes = () => {
   const [logtimes, setLogtimes] = useState<Logtime[]>([]);
@@ -72,20 +69,20 @@ const Logtimes = () => {
   const chartData = getChartData();
 
   return (
-    <View style={styles.cardContainer}>
-      <Text style={styles.sectionTitle}>Temps de présence</Text>
-      <View style={styles.header}>
+    <View style={globalStyles.widget}>
+      <Text style={globalStyles.widgetTitle}>Temps de présence</Text>
+      <View style={globalStyles.calendarNav}>
         <TouchableOpacity
           onPress={() => setWeekStart((prev) => prev.subtract(7, 'day'))}
         >
-          <Text style={styles.arrow}>◀</Text>
+          <Text style={globalStyles.arrow}>◀</Text>
         </TouchableOpacity>
 
         <View style={{ alignItems: 'center' }}>
-          <Text style={styles.week}>
+          <Text style={globalStyles.weekText}>
             Semaine du {weekStart.format('DD/MM/YYYY')}
           </Text>
-          <Text style={styles.total}>
+          <Text style={globalStyles.widgetRecap}>
             Total des heures : {Math.floor(chartData.total / 60)}h
           </Text>
         </View>
@@ -93,7 +90,7 @@ const Logtimes = () => {
         <TouchableOpacity
           onPress={() => setWeekStart((prev) => prev.add(7, 'day'))}
         >
-          <Text style={styles.arrow}>▶</Text>
+          <Text style={globalStyles.arrow}>▶</Text>
         </TouchableOpacity>
       </View>
 
@@ -134,47 +131,3 @@ const Logtimes = () => {
 };
 
 export default Logtimes;
-
-const styles = StyleSheet.create({
-  cardContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    paddingVertical: 14,
-    paddingHorizontal: 10,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    alignSelf: 'stretch',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 12,
-  },
-  arrow: {
-    fontSize: 20,
-    color: '#3B82F6',
-    paddingHorizontal: 12,
-  },
-  week: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    color: '#111',
-  },
-  total: {
-    fontSize: 13,
-    color: '#333',
-    marginTop: 2,
-  },
-  sectionTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#0084FA',
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-});

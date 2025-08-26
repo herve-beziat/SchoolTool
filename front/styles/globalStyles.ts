@@ -1,0 +1,100 @@
+import { colors, spacing, fonts } from './theme';
+import type { GlobalStyles } from '@/types/styleTypes';
+
+export const globalStyles: GlobalStyles = {
+  mainContainer: {
+    alignItems: 'center',
+    backgroundColor: colors.background,
+    height: '100%',
+  },
+
+  widgetContainer: {
+    alignItems: 'center',
+    // backgroundColor: colors.background,
+    height: 'auto',
+    width: '92%',
+    minHeight: 320,
+    marginBottom: 12,
+    marginTop: 12,
+  },
+
+  widget: {
+    width: '100%',
+    height: '100%',
+    alignSelf: 'center',
+    borderRadius: 12,
+    backgroundColor: '#fff',
+    paddingVertical: 14,
+    paddingHorizontal: 10,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  
+  widgetNavContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    width: '100%',
+  },
+
+  widgetNavTab: {
+    padding: 10,
+    marginHorizontal: 10,
+    borderBottomWidth: 2,
+    borderBottomColor: 'transparent',
+  },
+
+  widgetNavActiveTab: {
+    borderBottomColor: '#0084FA',
+  },
+
+  widgetTitle: {
+    fontSize: 21,
+    fontWeight: 'bold',
+    color: colors.primary,
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+
+  widgetSubTitle: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    color: colors.text,
+  },
+
+  calendarNav: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+
+  arrow: {
+    fontSize: 20,
+    color: '#3B82F6',
+  },
+
+  weekText: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    color: '#111',
+  },
+
+  widgetRecap: {
+    fontSize: 13,
+    color: '#333',
+    marginTop: 2,
+  },
+
+  title: {
+    fontSize: fonts.title,
+    color: colors.secondary,
+  },
+};
