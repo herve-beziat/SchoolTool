@@ -210,7 +210,7 @@ const ProgressModal: React.FC<ProgressModalProps> = ({
                   group?.member?.length < Number(jobData.job_max_students) &&
                   !jobData.click_date && (
                     <Pressable
-                      style={[styles.button, styles.waitingListBtn]}
+                      style={styles.waitingListBtn}
                       onPress={() => setShowWaitingList(true)}
                     >
                       <Text style={styles.buttonText}>Demandes en attente</Text>
