@@ -20,6 +20,7 @@ import type {
   JobGroupMembers,
 } from '@/types/jobsTypes';
 import Toast from 'react-native-toast-message';
+import { globalStyles } from '@/styles/globalStyles';
 
 const ProgressModal: React.FC<ProgressModalProps> = ({
   visible,
@@ -216,8 +217,8 @@ const ProgressModal: React.FC<ProgressModalProps> = ({
                     </Pressable>
                   )}
 
-                <Pressable style={styles.closeBtn} onPress={onClose}>
-                  <Text style={styles.closeText}>Fermer</Text>
+                <Pressable style={globalStyles.closeBtn} onPress={onClose}>
+                  <Text style={globalStyles.closeText}>Fermer</Text>
                 </Pressable>
               </ScrollView>
             )}
@@ -305,7 +306,10 @@ const styles = StyleSheet.create({
   },
   waitingListBtn: {
     backgroundColor: '#ffa000',
-    marginTop: 10,
+    marginTop: 20,
+    padding: 10,
+    borderRadius: 6,
+    alignItems: 'center',
   },
 });
 

@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
 import { ApiActions } from '@/services/ApiServices';
 import AvailableModal from './modals/AvailableModal';
 import type { JobAvailable } from '@/types/jobsTypes';
 import { globalStyles } from '@/styles/globalStyles';
+import UnitSelect from '../global/Select';
 
 const JobsAvailable = () => {
   const [jobsAvailable, setJobsAvailable] = useState<JobAvailable[]>([]);
@@ -40,50 +40,49 @@ const JobsAvailable = () => {
     getJobsAvailable();
   }, []);
 
-  const renderHeader = () => (
+
+  const units = useMemo(
+    () => Array.from(new Set(jobsAvailable.map(j => j.job_unit_name?.trim()))).sort(),
+    [jobsAvailable]
+  );
+
+    const filteredJobs = useMemo(() => {
+    if (selectedUnit === 'All') return jobsAvailable;
+    return jobsAvailable.filter(j => j.job_unit_name?.trim() === selectedUnit);
+  }, [jobsAvailable, selectedUnit]);
+ 
+const renderHeader = () => (
     <View style={[styles.row, styles.headerRow]}>
       <Text style={[styles.columnTitle, { flex: 1 }]}>Nom</Text>
       <View style={{ flex: 2 }}>
-        <Picker
-          selectedValue={selectedUnit}
-          style={styles.picker}
-          onValueChange={(itemValue) => setSelectedUnit(itemValue)}
-        >
-          <Picker.Item label="Toutes les units" value="All" key="all" />
-          {[...new Set(jobsAvailable.map((job) => job.job_unit_name))].map(
-            (unit, index) => (
-              <Picker.Item label={unit} value={unit} key={index} />
-            ),
-          )}
-        </Picker>
+        <UnitSelect
+          value={selectedUnit}
+          onChange={setSelectedUnit}
+          options={units}
+          placeholder="Toutes les units"
+          includeAll
+        />
       </View>
     </View>
   );
 
-  const renderJob = ({ item }: { item: JobAvailable }) => {
-    if (selectedUnit !== 'All' && item.job_unit_name !== selectedUnit)
-      return null;
-
-    return (
-      <Pressable style={styles.row} onPress={() => setSelectedJob(item)}>
-        <Text style={[styles.jobTitle, { flex: 1 }]}>{item.job_name}</Text>
-        <View style={{ flex: 2 }}>
-          <Text style={styles.unitText}>{item.job_unit_name}</Text>
-        </View>
-      </Pressable>
-    );
-  };
+  const renderJob = ({ item }: { item: JobAvailable }) => (
+    <Pressable style={styles.row} onPress={() => setSelectedJob(item)}>
+      <Text style={[styles.jobTitle, { flex: 1 }]}>{item.job_name}</Text>
+      <View style={{ flex: 2 }}>
+        <Text style={styles.unitText}>{item.job_unit_name}</Text>
+      </View>
+    </Pressable>
+  );
 
   return (
     <View style={globalStyles.widget}>
       <Text style={globalStyles.widgetTitle}>Projets disponibles</Text>
       {renderHeader()}
       <FlatList
-        data={jobsAvailable}
+        data={filteredJobs}
         renderItem={renderJob}
-        keyExtractor={(item, index) =>
-          item?.job_id?.toString?.() || `job-${index}`
-        }
+        keyExtractor={(item, index) => item?.job_id?.toString?.() || `job-${index}`}
       />
       <AvailableModal
         visible={!!selectedJob}

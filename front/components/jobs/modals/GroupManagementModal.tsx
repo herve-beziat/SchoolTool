@@ -11,6 +11,7 @@ import {
 import { ApiActions } from '@/services/ApiServices';
 import { GroupManagementModalProps, JobGroups } from '@/types/jobsTypes';
 import Toast from 'react-native-toast-message';
+import { globalStyles } from '@/styles/globalStyles';
 
 const GroupManagementModal: React.FC<GroupManagementModalProps> = ({
   visible,
@@ -143,8 +144,8 @@ const GroupManagementModal: React.FC<GroupManagementModalProps> = ({
                 <Text style={styles.createText}>Créer</Text>
               </Pressable>
             </View>
-            <Pressable style={styles.closeBtn} onPress={onClose}>
-              <Text style={styles.closeText}>Fermer</Text>
+            <Pressable style={globalStyles.closeBtn} onPress={onClose}>
+              <Text style={globalStyles.closeText}>Fermer</Text>
             </Pressable>
           </ScrollView>
         </View>

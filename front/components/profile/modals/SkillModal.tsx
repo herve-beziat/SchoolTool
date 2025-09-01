@@ -8,6 +8,7 @@ import {
   Pressable,
 } from 'react-native';
 import { ApiActions } from '@/services/ApiServices';
+import { globalStyles } from '@/styles/globalStyles';
 
 interface Props {
   visible: boolean;
@@ -78,8 +79,8 @@ export default function SkillJobModal({
             renderItem={renderItem}
           />
 
-          <Pressable style={styles.closeBtn} onPress={onClose}>
-            <Text style={styles.closeText}>Fermer</Text>
+          <Pressable style={globalStyles.closeBtn} onPress={onClose}>
+            <Text style={globalStyles.closeText}>Fermer</Text>
           </Pressable>
         </View>
       </View>

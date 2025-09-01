@@ -7,7 +7,12 @@ export default function AbsencesMain() {
   return (
     <SafeAreaView style={globalStyles.mainContainer}>
       <Header />
-      <View style={globalStyles.widgetContainer}>
+      <View
+        style={[
+          globalStyles.widgetContainer,
+          { flex: 1, minHeight: 0, alignSelf: 'stretch', width: '100%' },
+        ]}
+      >
         <UploadAbsences />
       </View>
     </SafeAreaView>

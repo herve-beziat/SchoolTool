@@ -54,7 +54,14 @@ const JobsMain = () => {
           <Text style={globalStyles.widgetNavText}>Terminés</Text>
         </TouchableOpacity>
       </View>
-      <View style={globalStyles.widgetContainer}>{renderComponent()}</View>
+      <View
+        style={[
+          globalStyles.widgetContainer,
+          { flex: 1, minHeight: 0, alignSelf: 'stretch', width: '100%' },
+        ]}
+      >
+        {renderComponent()}
+      </View>
     </SafeAreaView>
   );
 };

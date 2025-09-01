@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { ApiActions } from '@/services/ApiServices';
 import { JobReview, ReviewModalProps } from '@/types/jobsTypes';
+import { globalStyles } from '@/styles/globalStyles';
 
 const ReviewModal: React.FC<ReviewModalProps> = ({
   visible,
@@ -83,8 +84,8 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
                 <Text>Aucun rapport trouvé.</Text>
               )}
 
-              <Pressable style={styles.closeBtn} onPress={onClose}>
-                <Text style={styles.closeText}>Fermer</Text>
+              <Pressable style={globalStyles.closeBtn} onPress={onClose}>
+                <Text style={globalStyles.closeText}>Fermer</Text>
               </Pressable>
             </ScrollView>
           )}

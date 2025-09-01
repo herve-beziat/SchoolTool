@@ -1,8 +1,15 @@
 import { useState } from 'react';
-import { Modal, View, Text, StyleSheet, ScrollView } from 'react-native';
-import { Button } from 'react-native-paper';
+import {
+  Modal,
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+} from 'react-native';
 import type { JobDone } from '@/types/jobsTypes';
 import ReviewModal from './ReviewModal';
+import { globalStyles } from '@/styles/globalStyles';
 
 type DoneModalProps = {
   job: JobDone | null;
@@ -35,23 +42,15 @@ const DoneModal: React.FC<DoneModalProps> = ({ job, visible, onClose }) => {
               </Text>
               <Text style={styles.modalInfo}>📅 Début : {job.start_date}</Text>
               <Text style={styles.modalInfo}>📅 Fin : {job.end_date}</Text>
-
-              <Button
-                mode="contained"
-                onPress={onClose}
-                style={{ marginTop: 16 }}
+              <Pressable
+                style={styles.reportBtn}
+                onPress={() => setShowReview(true)}
               >
-                Fermer
-              </Button>
-              <Button
-                mode="outlined"
-                onPress={() => {
-                  setShowReview(true);
-                }}
-                style={{ marginTop: 12 }}
-              >
-                Rapport
-              </Button>
+                <Text style={styles.reportText}>Rapport</Text>
+              </Pressable>
+              <Pressable style={globalStyles.closeBtn} onPress={onClose}>
+                <Text style={globalStyles.closeText}>Fermer</Text>
+              </Pressable>
             </ScrollView>
           </View>
         </View>
@@ -99,6 +98,28 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginBottom: 4,
     color: '#555',
+  },
+  closeBtn: {
+    marginTop: 20,
+    backgroundColor: '#1188aa',
+    padding: 10,
+    borderRadius: 6,
+    alignItems: 'center',
+  },
+  closeText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  reportBtn: {
+    marginTop: 15,
+    backgroundColor: '#0044ff',
+    padding: 10,
+    borderRadius: 6,
+    alignItems: 'center',
+  },
+  reportText: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
 

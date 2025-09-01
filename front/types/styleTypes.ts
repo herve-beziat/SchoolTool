@@ -16,6 +16,8 @@ export type GlobalStyles = {
   arrow: TextStyle;
   weekText: TextStyle;
   widgetRecap: TextStyle;
+  closeBtn: ViewStyle;
+  closeText: TextStyle;
 };
 
 export type IndexStyles = {

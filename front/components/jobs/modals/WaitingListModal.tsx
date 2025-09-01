@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { ApiActions } from '@/services/ApiServices';
 import Toast from 'react-native-toast-message';
+import { globalStyles } from '@/styles/globalStyles';
 
 interface WaitingListModalProps {
   visible: boolean;
@@ -109,8 +110,8 @@ const WaitingListModal: React.FC<WaitingListModalProps> = ({
                   </View>
                 ))
               )}
-              <Pressable style={styles.closeBtn} onPress={onClose}>
-                <Text style={styles.closeText}>Fermer</Text>
+              <Pressable style={globalStyles.closeBtn} onPress={onClose}>
+                <Text style={globalStyles.closeText}>Fermer</Text>
               </Pressable>
             </ScrollView>
           )}

@@ -116,4 +116,17 @@ export const globalStyles: GlobalStyles = {
     fontSize: fonts.title,
     color: colors.secondary,
   },
+
+  closeBtn: {
+    marginTop: 20,
+    backgroundColor: '#1188aa',
+    padding: 10,
+    borderRadius: 6,
+    alignItems: 'center',
+  },
+  
+  closeText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
 };
