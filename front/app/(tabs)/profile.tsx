@@ -30,56 +30,34 @@ const ProfileMain = () => {
       <Header />
       <View style={globalStyles.widgetNavContainer}>
         <TouchableOpacity
-          style={[globalStyles.widgetNavTab, activeTab === 'profile' && globalStyles.widgetNavActiveTab]}
+          style={[
+            globalStyles.widgetNavTab,
+            activeTab === 'profile' && globalStyles.widgetNavActiveTab,
+          ]}
           onPress={() => setActiveTab('profile')}
         >
           <Text style={styles.tabText}>Profil</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[globalStyles.widgetNavTab, activeTab === 'skills' && globalStyles.widgetNavActiveTab]}
+          style={[
+            globalStyles.widgetNavTab,
+            activeTab === 'skills' && globalStyles.widgetNavActiveTab,
+          ]}
           onPress={() => setActiveTab('skills')}
         >
           <Text style={styles.tabText}>Compétences</Text>
         </TouchableOpacity>
       </View>
-
-      <View>
-        {renderComponent()}
-      </View>
+      <View style={globalStyles.widgetContainer}>{renderComponent()}</View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  tabContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    width: '100%',
-  },
-  tab: {
-    paddingBottom: 10,
-    marginHorizontal: 16,
-    borderBottomWidth: 2,
-    borderBottomColor: 'transparent',
-  },
-  activeTab: {
-    borderBottomColor: '#0084FA',
-  },
   tabText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#333',
-  },
-  content: {
-    flexGrow: 1,
   },
 });
 

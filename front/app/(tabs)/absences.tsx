@@ -1,27 +1,16 @@
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import UploadAbsences from '@/components/absences/AbsencesView';
 import Header from '@/components/global/Header';
 import { globalStyles } from '@/styles/globalStyles';
 
 export default function AbsencesMain() {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={globalStyles.mainContainer}>
       <Header />
-      <View style={styles.container}>
+      <View style={globalStyles.widgetContainer}>
         <UploadAbsences />
       </View>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#f7f7f7',
-  },
-  container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
-  },
-});

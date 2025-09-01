@@ -2,6 +2,17 @@ import { colors, spacing, fonts } from './theme';
 import type { GlobalStyles } from '@/types/styleTypes';
 
 export const globalStyles: GlobalStyles = {
+
+  headerContainer: {
+    paddingTop: 20,
+    paddingBottom: 10,
+    paddingHorizontal: 16,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#e6e6e6',
+    width: '100%',
+  },
   mainContainer: {
     alignItems: 'center',
     backgroundColor: colors.background,
@@ -12,7 +23,9 @@ export const globalStyles: GlobalStyles = {
     alignItems: 'center',
     // backgroundColor: colors.background,
     height: 'auto',
-    width: '92%',
+    width: '100%',
+    paddingLeft: 12,
+    paddingRight: 12,
     minHeight: 320,
     marginBottom: 12,
     marginTop: 12,
@@ -52,6 +65,12 @@ export const globalStyles: GlobalStyles = {
 
   widgetNavActiveTab: {
     borderBottomColor: '#0084FA',
+  },
+
+  widgetNavText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'black',
   },
 
   widgetTitle: {

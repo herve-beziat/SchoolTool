@@ -5,6 +5,7 @@ export const colors = {
     fourth: '#ccc',
     background: '#f7f7f7',
     text: '#333',
+    text2: '#444',
     border: '#ccc',
   };
   

@@ -11,6 +11,7 @@ import { Picker } from '@react-native-picker/picker';
 import { ApiActions } from '@/services/ApiServices';
 import DoneModal from './modals/DoneModal';
 import type { JobDone, JobUnit, JobPromotion } from '@/types/jobsTypes';
+import { globalStyles } from '@/styles/globalStyles';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -102,8 +103,8 @@ const JobsDone = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.sectionTitle}>Projets finis</Text>
+    <View style={globalStyles.widget}>
+      <Text style={globalStyles.widgetTitle}>Projets finis</Text>
 
       <View style={styles.selectorsContainer}>
         <View style={styles.pickerWrapper}>

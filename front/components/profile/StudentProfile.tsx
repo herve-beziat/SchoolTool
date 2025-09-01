@@ -15,6 +15,7 @@ import { useAuth } from '@/hooks/useAuth';
 import Toast from 'react-native-toast-message';
 import { Icon } from 'react-native-paper';
 import type { StudentInfo, StudentLinks } from '@/types/profileTypes';
+import { globalStyles } from '@/styles/globalStyles';
 
 export default function ProfileScreen() {
   const [student, setStudent] = useState<StudentInfo | null>(null);
@@ -100,8 +101,8 @@ export default function ProfileScreen() {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Mon profil</Text>
+    <View style={globalStyles.widget}>
+      <Text style={globalStyles.widgetTitle}>Mon profil</Text>
 
       {student && (
         <View style={styles.card}>
@@ -195,22 +196,11 @@ export default function ProfileScreen() {
           </View>
         </View>
       </Modal>
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: '#f7f7f7',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#0084FA',
-    marginBottom: 16,
-  },
   card: {
     backgroundColor: '#fff',
     width: '100%',

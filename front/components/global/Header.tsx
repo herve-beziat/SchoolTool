@@ -1,7 +1,7 @@
-import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { useAuth } from '@/hooks/useAuth';
 import { usePathname } from 'expo-router';
+import { globalStyles } from '@/styles/globalStyles';
 
 const Header = () => {
   const { user } = useAuth();
@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.headerContainer}>
       <Image
         source={require('@/assets/images/logo.png')}
         style={styles.logo}
@@ -34,15 +34,6 @@ const Header = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 20,
-    paddingBottom: 10,
-    paddingHorizontal: 16,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: '#e6e6e6',
-  },
   logo: {
     height: 40,
     marginBottom: 6,

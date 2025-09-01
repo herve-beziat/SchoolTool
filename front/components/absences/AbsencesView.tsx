@@ -11,6 +11,7 @@ import { format } from 'date-fns';
 import { ApiActions } from '@/services/ApiServices';
 import AbsenceFormModal from './AbsenceFormModal';
 import type { UploadedAbsence } from '@/types/absencesTypes';
+import { globalStyles } from '@/styles/globalStyles';
 
 const UploadAbsences: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -70,12 +71,12 @@ const UploadAbsences: React.FC = () => {
   );
 
   return (
-    <View style={styles.wrapper}>
+    <View style={globalStyles.widget}>
       <Pressable style={styles.addButton} onPress={() => setFormVisible(true)}>
         <Text style={styles.addButtonText}>+ Nouvelle absence</Text>
       </Pressable>
 
-      <Text style={styles.title}>Absences précédentes</Text>
+      <Text style={globalStyles.widgetTitle}>Absences précédentes</Text>
 
       {loading ? (
         <ActivityIndicator
@@ -112,11 +113,7 @@ const UploadAbsences: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
-  },
+
   title: {
     fontSize: 22,
     fontWeight: 'bold',

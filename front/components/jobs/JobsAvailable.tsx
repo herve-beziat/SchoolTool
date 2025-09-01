@@ -4,6 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import { ApiActions } from '@/services/ApiServices';
 import AvailableModal from './modals/AvailableModal';
 import type { JobAvailable } from '@/types/jobsTypes';
+import { globalStyles } from '@/styles/globalStyles';
 
 const JobsAvailable = () => {
   const [jobsAvailable, setJobsAvailable] = useState<JobAvailable[]>([]);
@@ -74,8 +75,8 @@ const JobsAvailable = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.sectionTitle}>Projets disponibles</Text>
+    <View style={globalStyles.widget}>
+      <Text style={globalStyles.widgetTitle}>Projets disponibles</Text>
       {renderHeader()}
       <FlatList
         data={jobsAvailable}
@@ -98,21 +99,6 @@ const JobsAvailable = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    borderRadius: 8,
-    padding: 16,
-    backgroundColor: 'white',
-    margin: 16,
-    borderColor: '#ccc',
-    borderWidth: 1,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#0084FA',
-    marginBottom: 12,
-    textAlign: 'center',
-  },
   headerRow: {
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
