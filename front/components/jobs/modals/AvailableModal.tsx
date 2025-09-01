@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import GroupManagementModal from './GroupManagementModal';
 import type { AvailableModalProps } from '@/types/jobsTypes';
+import { globalStyles } from '@/styles/globalStyles';
 
 const AvailableModal: React.FC<AvailableModalProps> = ({
   visible,
@@ -49,8 +50,8 @@ const AvailableModal: React.FC<AvailableModalProps> = ({
               <Text style={styles.groupText}>Groupe</Text>
             </Pressable>
 
-            <Pressable style={styles.closeBtn} onPress={onClose}>
-              <Text style={styles.closeText}>Fermer</Text>
+            <Pressable style={globalStyles.closeBtn} onPress={onClose}>
+              <Text style={globalStyles.closeText}>Fermer</Text>
             </Pressable>
           </ScrollView>
         </View>

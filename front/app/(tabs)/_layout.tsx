@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Platform } from 'react-native';
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';

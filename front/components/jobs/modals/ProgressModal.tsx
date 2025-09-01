@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -20,6 +20,7 @@ import type {
   JobGroupMembers,
 } from '@/types/jobsTypes';
 import Toast from 'react-native-toast-message';
+import { globalStyles } from '@/styles/globalStyles';
 
 const ProgressModal: React.FC<ProgressModalProps> = ({
   visible,
@@ -153,7 +154,7 @@ const ProgressModal: React.FC<ProgressModalProps> = ({
               <ActivityIndicator size="large" color="#1188aa" />
             ) : (
               <ScrollView>
-                <Text style={styles.title}>
+                <Text style={globalStyles.modalTitle}>
                   [{jobData?.job_unit_name}] {jobData?.job_name}
                 </Text>
 
@@ -209,15 +210,15 @@ const ProgressModal: React.FC<ProgressModalProps> = ({
                   group?.member?.length < Number(jobData.job_max_students) &&
                   !jobData.click_date && (
                     <Pressable
-                      style={[styles.button, styles.waitingListBtn]}
+                      style={styles.waitingListBtn}
                       onPress={() => setShowWaitingList(true)}
                     >
                       <Text style={styles.buttonText}>Demandes en attente</Text>
                     </Pressable>
                   )}
 
-                <Pressable style={styles.closeBtn} onPress={onClose}>
-                  <Text style={styles.closeText}>Fermer</Text>
+                <Pressable style={globalStyles.closeBtn} onPress={onClose}>
+                  <Text style={globalStyles.closeText}>Fermer</Text>
                 </Pressable>
               </ScrollView>
             )}
@@ -305,7 +306,10 @@ const styles = StyleSheet.create({
   },
   waitingListBtn: {
     backgroundColor: '#ffa000',
-    marginTop: 10,
+    marginTop: 20,
+    padding: 10,
+    borderRadius: 6,
+    alignItems: 'center',
   },
 });
 

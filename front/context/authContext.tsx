@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useState, useEffect, ReactNode } from 'react';
 import { Session } from '@/utils/session';
 import type { UserData, AuthContextType, UserSession } from '@/types/authTypes';
 import { useRouter } from 'expo-router';

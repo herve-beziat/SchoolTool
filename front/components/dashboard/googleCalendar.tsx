@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -12,6 +12,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { getValidGoogleAccessToken } from '@/utils/googleToken';
 import type { GoogleCalendarEvent } from '@/types/googleCalendarTypes';
 import type { Dayjs } from 'dayjs';
+import { globalStyles } from '@/styles/globalStyles';
 
 const GoogleCalendarWidget = () => {
   const { user } = useAuth();
@@ -66,20 +67,20 @@ const GoogleCalendarWidget = () => {
   const isToday = (date: Dayjs) => dayjs().isSame(date, 'day');
 
   return (
-    <View style={styles.cardContainer}>
-      <Text style={styles.sectionTitle}>Calendrier</Text>
-      <View style={styles.nav}>
+    <View style={globalStyles.widget}>
+      <Text style={globalStyles.widgetTitle}>Calendrier</Text>
+      <View style={globalStyles.calendarNav}>
         <Text
-          style={styles.arrow}
+          style={globalStyles.arrow}
           onPress={() => setStartOfWeek((prev) => prev.subtract(7, 'day'))}
         >
           ◀
         </Text>
-        <Text style={styles.weekText}>
+        <Text style={globalStyles.weekText}>
           Semaine du {startOfWeek.format('DD/MM/YYYY')}
         </Text>
         <Text
-          style={styles.arrow}
+          style={globalStyles.arrow}
           onPress={() => setStartOfWeek((prev) => prev.add(7, 'day'))}
         >
           ▶
@@ -152,37 +153,6 @@ const GoogleCalendarWidget = () => {
 };
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    width: '100%',
-    height: '100%',
-    alignSelf: 'center',
-    borderRadius: 12,
-    backgroundColor: '#fff',
-    paddingVertical: 14,
-    paddingHorizontal: 10,
-    minHeight: 310,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  nav: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  arrow: {
-    fontSize: 20,
-    color: '#3B82F6',
-  },
-  weekText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    color: '#111',
-  },
   grid: {
     flexDirection: 'row',
     flexGrow: 1,

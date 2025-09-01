@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import { ApiActions } from '@/services/ApiServices';
 import ProgressModal from './modals/ProgressModal';
 import type { JobInProgress } from '@/types/jobsTypes';
+import { globalStyles } from '@/styles/globalStyles';
 
 const JobsInProgress = () => {
   const [selectedJob, setSelectedJob] = useState<JobInProgress | null>(null);
@@ -97,8 +98,8 @@ const JobsInProgress = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.sectionTitle}>Projets en cours</Text>
+    <View style={globalStyles.widget}>
+      <Text style={globalStyles.widgetTitle}>Projets en cours</Text>
       {renderHeader()}
       <FlatList
         data={jobs}
@@ -119,21 +120,6 @@ const JobsInProgress = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    borderRadius: 8,
-    padding: 16,
-    backgroundColor: 'white',
-    margin: 16,
-    borderColor: '#ccc',
-    borderWidth: 1,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#0084FA',
-    marginBottom: 12,
-    textAlign: 'center',
-  },
   headerRow: {
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',

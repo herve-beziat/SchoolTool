@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
-  ScrollView,
-  useWindowDimensions,
 } from 'react-native';
 import ProfileScreen from '@/components/profile/StudentProfile';
 import SkillScreen from '@/components/profile/StudentSkills';
 import Header from '@/components/global/Header';
+import { globalStyles } from '@/styles/globalStyles';
 
 const ProfileMain = () => {
   const [activeTab, setActiveTab] = useState('profile');
-  const { height } = useWindowDimensions();
 
   const renderComponent = () => {
     switch (activeTab) {
@@ -28,62 +26,45 @@ const ProfileMain = () => {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={globalStyles.mainContainer}>
       <Header />
-      <View style={styles.tabContainer}>
+      <View style={globalStyles.widgetNavContainer}>
         <TouchableOpacity
-          style={[styles.tab, activeTab === 'profile' && styles.activeTab]}
+          style={[
+            globalStyles.widgetNavTab,
+            activeTab === 'profile' && globalStyles.widgetNavActiveTab,
+          ]}
           onPress={() => setActiveTab('profile')}
         >
           <Text style={styles.tabText}>Profil</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.tab, activeTab === 'skills' && styles.activeTab]}
+          style={[
+            globalStyles.widgetNavTab,
+            activeTab === 'skills' && globalStyles.widgetNavActiveTab,
+          ]}
           onPress={() => setActiveTab('skills')}
         >
           <Text style={styles.tabText}>Compétences</Text>
         </TouchableOpacity>
       </View>
-
-      <ScrollView
-        contentContainerStyle={[styles.content, { minHeight: height }]}
-        bounces={false}
+      <View
+        style={[
+          globalStyles.widgetContainer,
+          { flex: 1, minHeight: 0, alignSelf: 'stretch', width: '100%' },
+        ]}
       >
         {renderComponent()}
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  tabContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-  tab: {
-    paddingBottom: 10,
-    marginHorizontal: 16,
-    borderBottomWidth: 2,
-    borderBottomColor: 'transparent',
-  },
-  activeTab: {
-    borderBottomColor: '#0084FA',
-  },
   tabText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#333',
-  },
-  content: {
-    flexGrow: 1,
   },
 });
 

@@ -72,7 +72,7 @@ describe('JobsDone', () => {
       expect(getByText('Projet React Native')).toBeTruthy();
     });
 
-    const unitPicker = getByDisplayValue('Toutes les unités');
+    const unitPicker = getByDisplayValue('Toutes les units');
     fireEvent(unitPicker, 'valueChange', 'unit1');
 
     await waitFor(() => {

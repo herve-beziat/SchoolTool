@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import type { FC } from 'react';
 import {
   Modal,
   View,
@@ -10,6 +11,7 @@ import {
 } from 'react-native';
 import { ApiActions } from '@/services/ApiServices';
 import { JobReview, ReviewModalProps } from '@/types/jobsTypes';
+import { globalStyles } from '@/styles/globalStyles';
 
 const ReviewModal: React.FC<ReviewModalProps> = ({
   visible,
@@ -55,7 +57,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
             <ActivityIndicator size="large" color="#1188aa" />
           ) : (
             <ScrollView>
-              <Text style={styles.title}>Rapport de correction</Text>
+              <Text style={globalStyles.modalTitle}>Rapport de correction</Text>
 
               {review ? (
                 <>
@@ -82,8 +84,8 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
                 <Text>Aucun rapport trouvé.</Text>
               )}
 
-              <Pressable style={styles.closeBtn} onPress={onClose}>
-                <Text style={styles.closeText}>Fermer</Text>
+              <Pressable style={globalStyles.closeBtn} onPress={onClose}>
+                <Text style={globalStyles.closeText}>Fermer</Text>
               </Pressable>
             </ScrollView>
           )}
@@ -107,14 +109,10 @@ const styles = StyleSheet.create({
     width: '90%',
     maxHeight: '90%',
   },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 12,
-  },
   label: {
     fontWeight: '600',
     marginTop: 12,
+    color: '#0084FA',
   },
   value: {
     marginBottom: 8,

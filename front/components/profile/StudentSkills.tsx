@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { ApiActions } from '@/services/ApiServices';
 import SkillCategoryModal from './modals/SkillCategoryModal';
+import { globalStyles } from '@/styles/globalStyles';
 
 export default function SkillScreen() {
   const [selectedSkill, setSelectedSkill] = useState<any>(null);
@@ -66,8 +67,8 @@ export default function SkillScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.sectionTitle}>Compétences acquises</Text>
+    <View style={globalStyles.widget}>
+      <Text style={globalStyles.widgetTitle}>Compétences acquises</Text>
 
       <FlatList
         data={skillData}
@@ -87,20 +88,6 @@ export default function SkillScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f7f7f7',
-    paddingTop: 16,
-    paddingHorizontal: 12,
-    width: '100%',
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#0084FA',
-    marginBottom: 12,
-    textAlign: 'center',
-  },
   list: {
     paddingBottom: 40,
     width: '100%',

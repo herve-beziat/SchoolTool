@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Modal,
   View,
@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { ApiActions } from '@/services/ApiServices';
 import SkillDetailModal from './SkillModal';
+import { globalStyles } from '@/styles/globalStyles';
 
 interface Props {
   visible: boolean;
@@ -72,7 +73,9 @@ export default function SkillCategoryModal({
       <Modal visible={visible} animationType="slide" transparent>
         <View style={styles.overlay}>
           <View style={styles.modal}>
-            <Text style={styles.title}>Compétences [{skillName}]</Text>
+            <Text style={globalStyles.modalTitle}>
+              Compétences [{skillName}]
+            </Text>
 
             <View style={styles.headerRow}>
               <Text style={[styles.header, styles.name]}>Nom</Text>
@@ -87,8 +90,8 @@ export default function SkillCategoryModal({
               renderItem={renderItem}
             />
 
-            <Pressable style={styles.closeBtn} onPress={onClose}>
-              <Text style={styles.closeText}>Fermer</Text>
+            <Pressable style={globalStyles.closeBtn} onPress={onClose}>
+              <Text style={globalStyles.closeText}>Fermer</Text>
             </Pressable>
           </View>
         </View>

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import type { FC } from 'react';
 import {
   View,
   Text,
@@ -10,6 +11,7 @@ import {
 } from 'react-native';
 import { ApiActions } from '@/services/ApiServices';
 import Toast from 'react-native-toast-message';
+import { globalStyles } from '@/styles/globalStyles';
 
 interface WaitingListModalProps {
   visible: boolean;
@@ -88,7 +90,7 @@ const WaitingListModal: React.FC<WaitingListModalProps> = ({
     >
       <View style={styles.overlay}>
         <View style={styles.modal}>
-          <Text style={styles.title}>Demandes en attente</Text>
+          <Text style={globalStyles.modalTitle}>Demandes en attente</Text>
           {loading ? (
             <ActivityIndicator size="large" color="#3B82F6" />
           ) : (
@@ -108,8 +110,8 @@ const WaitingListModal: React.FC<WaitingListModalProps> = ({
                   </View>
                 ))
               )}
-              <Pressable style={styles.closeBtn} onPress={onClose}>
-                <Text style={styles.closeText}>Fermer</Text>
+              <Pressable style={globalStyles.closeBtn} onPress={onClose}>
+                <Text style={globalStyles.closeText}>Fermer</Text>
               </Pressable>
             </ScrollView>
           )}
