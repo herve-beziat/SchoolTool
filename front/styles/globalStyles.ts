@@ -124,9 +124,16 @@ export const globalStyles: GlobalStyles = {
     borderRadius: 6,
     alignItems: 'center',
   },
-  
+
   closeText: {
     color: '#fff',
     fontWeight: 'bold',
+  },
+
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 12,
+    color: '#e91e63',
   },
 };

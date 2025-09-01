@@ -57,7 +57,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
             <ActivityIndicator size="large" color="#1188aa" />
           ) : (
             <ScrollView>
-              <Text style={styles.title}>Rapport de correction</Text>
+              <Text style={globalStyles.modalTitle}>Rapport de correction</Text>
 
               {review ? (
                 <>
@@ -108,12 +108,6 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '90%',
     maxHeight: '90%',
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 12,
-    color: '#e91e63',
   },
   label: {
     fontWeight: '600',

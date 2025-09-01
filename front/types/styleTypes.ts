@@ -18,6 +18,7 @@ export type GlobalStyles = {
   widgetRecap: TextStyle;
   closeBtn: ViewStyle;
   closeText: TextStyle;
+  modalTitle: TextStyle;
 };
 
 export type IndexStyles = {

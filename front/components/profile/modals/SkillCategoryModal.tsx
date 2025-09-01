@@ -73,7 +73,7 @@ export default function SkillCategoryModal({
       <Modal visible={visible} animationType="slide" transparent>
         <View style={styles.overlay}>
           <View style={styles.modal}>
-            <Text style={styles.title}>Compétences [{skillName}]</Text>
+            <Text style={globalStyles.modalTitle}>Compétences [{skillName}]</Text>
 
             <View style={styles.headerRow}>
               <Text style={[styles.header, styles.name]}>Nom</Text>

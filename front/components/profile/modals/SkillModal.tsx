@@ -62,7 +62,7 @@ export default function SkillJobModal({
     <Modal visible={visible} animationType="slide" transparent>
       <View style={styles.overlay}>
         <View style={styles.modal}>
-          <Text style={styles.title}>
+          <Text style={globalStyles.modalTitle}>
             Détail de la compétence [{skillName}]
           </Text>
 

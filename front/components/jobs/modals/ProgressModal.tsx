@@ -154,7 +154,7 @@ const ProgressModal: React.FC<ProgressModalProps> = ({
               <ActivityIndicator size="large" color="#1188aa" />
             ) : (
               <ScrollView>
-                <Text style={styles.title}>
+                <Text style={globalStyles.modalTitle}>
                   [{jobData?.job_unit_name}] {jobData?.job_name}
                 </Text>
 

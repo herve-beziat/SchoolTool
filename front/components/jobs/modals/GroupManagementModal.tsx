@@ -109,7 +109,7 @@ const GroupManagementModal: React.FC<GroupManagementModalProps> = ({
     >
       <View style={styles.overlay}>
         <View style={styles.modal}>
-          <Text style={styles.title}>Groupes disponibles</Text>
+          <Text style={globalStyles.modalTitle}>Groupes disponibles</Text>
           <ScrollView>
             {Array.isArray(groups) && groups.length > 0 ? (
               groups.map((g) => (

@@ -5,8 +5,8 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Platform,
 } from 'react-native';
+import { globalStyles } from '@/styles/globalStyles';
 
 type Props = {
   visible: boolean;
@@ -27,7 +27,7 @@ const ConfirmModal: React.FC<Props> = ({
     <Modal animationType="fade" transparent visible={visible}>
       <View style={styles.overlay}>
         <View style={styles.modal}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={globalStyles.modalTitle}>{title}</Text>
           <Text style={styles.message}>{message}</Text>
 
           <View style={styles.buttons}>

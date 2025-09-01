@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   View,
   Text,
@@ -13,10 +13,15 @@ import AbsenceFormModal from './AbsenceFormModal';
 import type { UploadedAbsence } from '@/types/absencesTypes';
 import { globalStyles } from '@/styles/globalStyles';
 
+const PRIMARY = '#0B62E0';
+const BG_SOFT = '#F8FAFC';
+const TEXT = '#0F172A';
+
 const UploadAbsences: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const [uploadedAbsences, setUploadedAbsences] = useState<UploadedAbsence[]>(
-    [],
+    []
   );
   const [formVisible, setFormVisible] = useState(false);
 
@@ -40,7 +45,6 @@ const UploadAbsences: React.FC = () => {
           link: '',
         },
       });
-
       if (response?.status === 200) {
         setUploadedAbsences(response.data || []);
       }
@@ -51,56 +55,87 @@ const UploadAbsences: React.FC = () => {
     }
   };
 
-  const renderAbsenceItem = ({ item }: { item: UploadedAbsence }) => (
-    <View style={styles.row}>
-      <Text style={[styles.cell, styles.cellText]}>
-        {format(new Date(item.absence_start_date), 'dd/MM/yyyy')} -{' '}
-        {format(new Date(item.absence_end_date), 'dd/MM/yyyy')}
-      </Text>
-      <Text style={[styles.cell, styles.cellText]}>
-        {item.absence_duration} jour{item.absence_duration > 1 ? 's' : ''}
-      </Text>
-      <Text style={[styles.cell, styles.cellText]}>
-        {item.absence_status === 1
-          ? 'Validée'
-          : item.absence_status === 2
-            ? 'Refusée'
-            : 'En attente'}
-      </Text>
-    </View>
+  const onRefresh = async () => {
+    setRefreshing(true);
+    try {
+      await fetchUploadedAbsences();
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
+  const statusStyle = (s?: number) => {
+    const status = Number(s);
+    if (status === 1)
+      return { label: 'Validée', bg: '#E8F7EE', fg: '#1B9C59', br: '#BFEBD1' };
+    if (status === 2)
+      return { label: 'Refusée', bg: '#FEECEE', fg: '#D22E46', br: '#F7C6CD' };
+    return { label: 'En attente', bg: '#FFF7E6', fg: '#B36B00', br: '#FFE1AA' };
+  };
+
+  const pluralJours = (n: number) => `${n} jour${n > 1 ? 's' : ''}`;
+
+  const renderItem = ({ item }: { item: UploadedAbsence }) => {
+    const s = statusStyle(item.absence_status);
+    const from = format(new Date(item.absence_start_date), 'dd/MM/yyyy');
+    const to = format(new Date(item.absence_end_date), 'dd/MM/yyyy');
+
+    return (
+      <View style={styles.cardRow}>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.periodText}>{from} → {to}</Text>
+          <Text style={styles.subText}>{pluralJours(item.absence_duration)}</Text>
+        </View>
+
+        <View
+          style={[
+            styles.statusPill,
+            { backgroundColor: s.bg, borderColor: s.br },
+          ]}
+        >
+          <Text style={[styles.statusText, { color: s.fg }]}>{s.label}</Text>
+        </View>
+      </View>
+    );
+  };
+
+  const ListHeader = useMemo(
+    () => (
+      <>
+        <Pressable style={styles.addButton} onPress={() => setFormVisible(true)}>
+          <Text style={styles.addButtonText}>＋ Nouvelle absence</Text>
+        </Pressable>
+
+        <Text style={globalStyles.widgetTitle}>Absences précédentes</Text>
+      </>
+    ),
+    []
   );
 
   return (
-    <View style={globalStyles.widget}>
-      <Pressable style={styles.addButton} onPress={() => setFormVisible(true)}>
-        <Text style={styles.addButtonText}>+ Nouvelle absence</Text>
-      </Pressable>
-
-      <Text style={globalStyles.widgetTitle}>Absences précédentes</Text>
-
+    <View style={[globalStyles.widget, styles.fill]}>
       {loading ? (
-        <ActivityIndicator
-          size="large"
-          color="#0084FA"
-          style={{ marginTop: 20 }}
-        />
+        <ActivityIndicator size="large" color={PRIMARY} style={{ marginTop: 24 }} />
       ) : (
-        <View style={styles.tableContainer}>
-          <View style={styles.headerRow}>
-            <Text style={[styles.headerText, styles.cell]}>Période</Text>
-            <Text style={[styles.headerText, styles.cell]}>Durée</Text>
-            <Text style={[styles.headerText, styles.cell]}>Statut</Text>
-          </View>
-
-          <FlatList
-            data={uploadedAbsences}
-            keyExtractor={(item, index) =>
-              `${item.absence_start_date}-${index}`
-            }
-            renderItem={renderAbsenceItem}
-            contentContainerStyle={{ paddingBottom: 20 }}
-          />
-        </View>
+        <FlatList
+          data={uploadedAbsences}
+          keyExtractor={(item, index) => `${item.absence_start_date}-${index}`}
+          renderItem={renderItem}
+          contentContainerStyle={styles.listContent}
+          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+          ListHeaderComponent={ListHeader}
+          ListEmptyComponent={
+            <View style={styles.emptyBox}>
+              <Text style={styles.emptyTitle}>Aucune absence</Text>
+              <Text style={styles.emptyText}>
+                Ajoute ta première absence avec le bouton ci-dessus.
+              </Text>
+            </View>
+          }
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+          showsVerticalScrollIndicator
+        />
       )}
 
       <AbsenceFormModal
@@ -113,57 +148,71 @@ const UploadAbsences: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  fill: { flex: 1, minHeight: 0 },
 
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#0084FA',
-    textAlign: 'center',
-    marginBottom: 12,
+  listContent: {
+    paddingBottom: 16,
   },
+
   addButton: {
     alignSelf: 'center',
-    marginBottom: 16,
+    marginTop: 6,
+    marginBottom: 10,
     paddingHorizontal: 16,
-    paddingVertical: 8,
-    backgroundColor: '#0084FA',
-    borderRadius: 6,
+    paddingVertical: 10,
+    backgroundColor: PRIMARY,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 3,
+    elevation: 1,
   },
   addButtonText: {
     color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 15,
+    fontWeight: '800',
+    letterSpacing: 0.3,
   },
-  tableContainer: {
-    borderTopWidth: 1,
-    borderColor: '#ddd',
-  },
-  headerRow: {
+
+  cardRow: {
     flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
-    paddingVertical: 8,
-    backgroundColor: '#f2f2f2',
+    alignItems: 'center',
+    gap: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#E2E8F0',
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 1,
+    marginHorizontal: 2,
   },
-  headerText: {
-    fontWeight: 'bold',
-    fontSize: 14,
-    color: '#333',
-    textAlign: 'left',
+
+  periodText: { fontSize: 15, fontWeight: '700', color: TEXT },
+  subText: { fontSize: 13, color: '#475569', marginTop: 2 },
+
+  statusPill: {
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 999,
+    borderWidth: 1,
   },
-  row: {
-    flexDirection: 'row',
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderColor: '#f0f0f0',
+  statusText: { fontWeight: '700', fontSize: 12 },
+
+  emptyBox: {
+    marginTop: 8,
+    borderRadius: 14,
+    paddingVertical: 18,
+    paddingHorizontal: 14,
+    backgroundColor: BG_SOFT,
+    alignItems: 'center',
   },
-  cell: {
-    flex: 1,
-  },
-  cellText: {
-    fontSize: 14,
-    color: '#333',
-  },
+  emptyTitle: { fontSize: 16, fontWeight: '800', color: TEXT },
+  emptyText: { color: '#64748B', marginTop: 4, textAlign: 'center' },
 });
 
 export default UploadAbsences;

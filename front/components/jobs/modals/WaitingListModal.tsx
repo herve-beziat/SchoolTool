@@ -90,7 +90,7 @@ const WaitingListModal: React.FC<WaitingListModalProps> = ({
     >
       <View style={styles.overlay}>
         <View style={styles.modal}>
-          <Text style={styles.title}>Demandes en attente</Text>
+          <Text style={globalStyles.modalTitle}>Demandes en attente</Text>
           {loading ? (
             <ActivityIndicator size="large" color="#3B82F6" />
           ) : (

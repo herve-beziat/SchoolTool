@@ -5,7 +5,6 @@ import {
   Modal,
   StyleSheet,
   TouchableOpacity,
-  Alert,
   ActivityIndicator,
   Button,
   Platform,
@@ -17,6 +16,7 @@ import { ApiActions } from '@/services/ApiServices';
 import type { AbsenceForm } from '@/types/absencesTypes';
 import ConfirmModal from './ConfirmModal';
 import Toast from 'react-native-toast-message';
+import { globalStyles } from '@/styles/globalStyles';
 
 type Props = {
   visible: boolean;
@@ -223,7 +223,7 @@ const AbsenceFormModal: React.FC<Props> = ({ visible, onClose, onSuccess }) => {
             <ActivityIndicator size="large" color="#2196f3" />
           ) : (
             <>
-              <Text style={styles.title}>Nouvelle absence</Text>
+              <Text style={globalStyles.modalTitle}>Nouvelle absence</Text>
 
               {renderDateInput(
                 'Date de début',
