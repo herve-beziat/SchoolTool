@@ -21,7 +21,7 @@ const UploadAbsences: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [uploadedAbsences, setUploadedAbsences] = useState<UploadedAbsence[]>(
-    []
+    [],
   );
   const [formVisible, setFormVisible] = useState(false);
 
@@ -83,8 +83,12 @@ const UploadAbsences: React.FC = () => {
     return (
       <View style={styles.cardRow}>
         <View style={{ flex: 1 }}>
-          <Text style={styles.periodText}>{from} → {to}</Text>
-          <Text style={styles.subText}>{pluralJours(item.absence_duration)}</Text>
+          <Text style={styles.periodText}>
+            {from} → {to}
+          </Text>
+          <Text style={styles.subText}>
+            {pluralJours(item.absence_duration)}
+          </Text>
         </View>
 
         <View
@@ -102,20 +106,26 @@ const UploadAbsences: React.FC = () => {
   const ListHeader = useMemo(
     () => (
       <>
-        <Pressable style={styles.addButton} onPress={() => setFormVisible(true)}>
+        <Text style={globalStyles.widgetTitle}>Absences précédentes</Text>
+        <Pressable
+          style={styles.addButton}
+          onPress={() => setFormVisible(true)}
+        >
           <Text style={styles.addButtonText}>＋ Nouvelle absence</Text>
         </Pressable>
-
-        <Text style={globalStyles.widgetTitle}>Absences précédentes</Text>
       </>
     ),
-    []
+    [],
   );
 
   return (
     <View style={[globalStyles.widget, styles.fill]}>
       {loading ? (
-        <ActivityIndicator size="large" color={PRIMARY} style={{ marginTop: 24 }} />
+        <ActivityIndicator
+          size="large"
+          color={PRIMARY}
+          style={{ marginTop: 24 }}
+        />
       ) : (
         <FlatList
           data={uploadedAbsences}
