@@ -24,7 +24,7 @@ services:
       DB_PWD: root
       DB_NAME: schooltool_api
       LPTF_JWT_KEY: toto
-      GOOGLE_CLIENT_ID: "108943179163543703723"
+      GOOGLE_CLIENT_ID: '108943179163543703723'
       GOOGLE_CLIENT_EMAIL: atlas-793@atelier-385117.iam.gserviceaccount.com
       GOOGLE_PRIVATE_KEY: |
         -----BEGIN PRIVATE KEY-----
@@ -55,7 +55,7 @@ services:
         sx5Xl3af+j43U2uRDvG2Q5043pgBEu9Zn01BYd3KAUKotcID2+SdUF5XfDlFdQzX
         Z6zDnlLza1WZWEBLc7A4sHZg
         -----END PRIVATE KEY-----
-      GOOGLE_DRIVE_ABSENCE_FOLDER: "1TlMbaF8QQJ8eY7OQQFr0v1-LooKgcNzz"
+      GOOGLE_DRIVE_ABSENCE_FOLDER: '1TlMbaF8QQJ8eY7OQQFr0v1-LooKgcNzz'
       IS_DEV: true
 
   auth:

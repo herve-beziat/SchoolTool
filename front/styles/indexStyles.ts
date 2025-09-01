@@ -1,7 +1,7 @@
 import { colors, spacing, fonts } from './theme';
 import type { IndexStyles } from '@/types/styleTypes';
 
-export const indexStyles: IndexStyles = { 
+export const indexStyles: IndexStyles = {
   chartSection: {
     width: '92%',
     minHeight: 320,

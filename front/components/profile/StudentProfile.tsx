@@ -61,8 +61,14 @@ export default function ProfileScreen() {
         },
       });
 
-      const doneJobs = await ApiActions.get({ route: 'job/done', params: { job_id: '' } });
-      const inProgressJobs = await ApiActions.get({ route: 'job/progress', params: { job_id: '' } });
+      const doneJobs = await ApiActions.get({
+        route: 'job/done',
+        params: { job_id: '' },
+      });
+      const inProgressJobs = await ApiActions.get({
+        route: 'job/progress',
+        params: { job_id: '' },
+      });
 
       const data = studentReq?.data?.[0];
       setStudent(data);
@@ -94,7 +100,11 @@ export default function ProfileScreen() {
     try {
       if (!links) throw new Error('Links cannot be null');
       await ApiActions.put({ route: 'student', params: links });
-      Toast.show({ type: 'success', text1: 'Succès', text2: 'Liens mis à jour' });
+      Toast.show({
+        type: 'success',
+        text1: 'Succès',
+        text2: 'Liens mis à jour',
+      });
       setEditing(false);
       loadProfile();
     } catch {
@@ -150,7 +160,9 @@ export default function ProfileScreen() {
             { label: 'LinkedIn', key: 'linkedin', icon: 'linkedin' },
             { label: 'CV', key: 'cv', icon: 'file-document-outline' },
           ].map(({ label, key, icon }, i, arr) => {
-            const value = (student as any)?.[`student_${key}`] as string | undefined;
+            const value = (student as any)?.[`student_${key}`] as
+              | string
+              | undefined;
             const isEmpty = !value;
             return (
               <Pressable
@@ -177,11 +189,17 @@ export default function ProfileScreen() {
           })}
 
           <View style={styles.actionsRow}>
-            <Pressable style={[styles.button, styles.buttonPrimary]} onPress={() => setEditing(true)}>
+            <Pressable
+              style={[styles.button, styles.buttonPrimary]}
+              onPress={() => setEditing(true)}
+            >
               <Icon source="pencil" size={18} color="#fff" />
               <Text style={styles.buttonPrimaryText}>Modifier mes liens</Text>
             </Pressable>
-            <Pressable style={[styles.button, styles.buttonDanger]} onPress={logout}>
+            <Pressable
+              style={[styles.button, styles.buttonDanger]}
+              onPress={logout}
+            >
               <Icon source="logout" size={18} color="#fff" />
               <Text style={styles.buttonDangerText}>Se déconnecter</Text>
             </Pressable>
@@ -190,7 +208,12 @@ export default function ProfileScreen() {
       </ScrollView>
 
       {/* Modal édition */}
-      <Modal visible={editing} transparent animationType="slide" onRequestClose={() => setEditing(false)}>
+      <Modal
+        visible={editing}
+        transparent
+        animationType="slide"
+        onRequestClose={() => setEditing(false)}
+      >
         <View style={styles.sheetBackdrop}>
           <View style={styles.sheet}>
             <View style={styles.sheetHandle} />
@@ -200,19 +223,21 @@ export default function ProfileScreen() {
               (Object.keys(links) as (keyof StudentLinks)[]).map((key) => (
                 <View key={key} style={styles.inputWrap}>
                   <Text style={styles.inputLabel}>
-                    {key === 'personal_website' ? 'Portfolio' : key.toUpperCase()}
+                    {key === 'personal_website'
+                      ? 'Portfolio'
+                      : key.toUpperCase()}
                   </Text>
                   <TextInput
                     placeholder={
                       key === 'github'
                         ? 'https://github.com/mon-compte'
                         : key === 'linkedin'
-                        ? 'https://www.linkedin.com/in/mon-profil'
-                        : key === 'cv'
-                        ? 'Lien vers votre CV'
-                        : key === 'plesk'
-                        ? 'Lien Plesk'
-                        : 'https://mon-site.dev'
+                          ? 'https://www.linkedin.com/in/mon-profil'
+                          : key === 'cv'
+                            ? 'Lien vers votre CV'
+                            : key === 'plesk'
+                              ? 'Lien Plesk'
+                              : 'https://mon-site.dev'
                     }
                     value={links[key]}
                     onChangeText={(t) =>
@@ -229,12 +254,20 @@ export default function ProfileScreen() {
                 </View>
               ))}
 
-            <Pressable style={[styles.button, styles.buttonPrimary, { marginTop: 8 }]} onPress={handleSaveLinks}>
+            <Pressable
+              style={[styles.button, styles.buttonPrimary, { marginTop: 8 }]}
+              onPress={handleSaveLinks}
+            >
               <Icon source="content-save" size={18} color="#fff" />
               <Text style={styles.buttonPrimaryText}>Sauvegarder</Text>
             </Pressable>
-            <Pressable onPress={() => setEditing(false)} style={{ paddingVertical: 12 }}>
-              <Text style={{ textAlign: 'center', color: '#475569' }}>Annuler</Text>
+            <Pressable
+              onPress={() => setEditing(false)}
+              style={{ paddingVertical: 12 }}
+            >
+              <Text style={{ textAlign: 'center', color: '#475569' }}>
+                Annuler
+              </Text>
             </Pressable>
           </View>
         </View>
@@ -271,10 +304,26 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 2,
   },
-  avatarText: { color: '#fff', fontWeight: '800', fontSize: 28, letterSpacing: 0.5 },
-  name: { fontSize: 20, fontWeight: '700', color: TEXT, marginBottom: 6, textAlign: 'center' },
+  avatarText: {
+    color: '#fff',
+    fontWeight: '800',
+    fontSize: 28,
+    letterSpacing: 0.5,
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: TEXT,
+    marginBottom: 6,
+    textAlign: 'center',
+  },
 
-  tagsRow: { flexDirection: 'row', gap: 8, flexWrap: 'wrap', justifyContent: 'center' },
+  tagsRow: {
+    flexDirection: 'row',
+    gap: 8,
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
   tag: {
     flexDirection: 'row',
     gap: 6,
@@ -330,7 +379,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   rowFirst: { borderTopLeftRadius: 12, borderTopRightRadius: 12 },
-  rowLast: { borderBottomWidth: 0, borderBottomLeftRadius: 12, borderBottomRightRadius: 12 },
+  rowLast: {
+    borderBottomWidth: 0,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
+  },
   rowLeft: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   rowLabel: { fontSize: 15, fontWeight: '600', color: TEXT },
 
@@ -355,7 +408,11 @@ const styles = StyleSheet.create({
   buttonDangerText: { color: '#fff', fontWeight: '700' },
 
   /* bottom sheet */
-  sheetBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.35)', justifyContent: 'flex-end' },
+  sheetBackdrop: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    justifyContent: 'flex-end',
+  },
   sheet: {
     backgroundColor: '#fff',
     paddingTop: 6,
@@ -372,10 +429,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#CBD5E1',
     marginBottom: 10,
   },
-  sheetTitle: { fontSize: 16, fontWeight: '800', color: TEXT, marginBottom: 10 },
+  sheetTitle: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: TEXT,
+    marginBottom: 10,
+  },
 
   inputWrap: { marginBottom: 10 },
-  inputLabel: { fontSize: 12, fontWeight: '700', color: '#475569', marginBottom: 6 },
+  inputLabel: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#475569',
+    marginBottom: 6,
+  },
   input: {
     borderWidth: 1,
     borderColor: '#E2E8F0',

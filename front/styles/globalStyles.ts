@@ -2,7 +2,6 @@ import { colors, spacing, fonts } from './theme';
 import type { GlobalStyles } from '@/types/styleTypes';
 
 export const globalStyles: GlobalStyles = {
-
   headerContainer: {
     paddingTop: 20,
     paddingBottom: 10,
@@ -45,7 +44,7 @@ export const globalStyles: GlobalStyles = {
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
-  
+
   widgetNavContainer: {
     flexDirection: 'row',
     justifyContent: 'center',

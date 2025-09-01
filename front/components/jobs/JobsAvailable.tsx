@@ -40,18 +40,22 @@ const JobsAvailable = () => {
     getJobsAvailable();
   }, []);
 
-
   const units = useMemo(
-    () => Array.from(new Set(jobsAvailable.map(j => j.job_unit_name?.trim()))).sort(),
-    [jobsAvailable]
+    () =>
+      Array.from(
+        new Set(jobsAvailable.map((j) => j.job_unit_name?.trim())),
+      ).sort(),
+    [jobsAvailable],
   );
 
-    const filteredJobs = useMemo(() => {
+  const filteredJobs = useMemo(() => {
     if (selectedUnit === 'All') return jobsAvailable;
-    return jobsAvailable.filter(j => j.job_unit_name?.trim() === selectedUnit);
+    return jobsAvailable.filter(
+      (j) => j.job_unit_name?.trim() === selectedUnit,
+    );
   }, [jobsAvailable, selectedUnit]);
- 
-const renderHeader = () => (
+
+  const renderHeader = () => (
     <View style={[styles.row, styles.headerRow]}>
       <Text style={[styles.columnTitle, { flex: 1 }]}>Nom</Text>
       <View style={{ flex: 2 }}>
@@ -82,7 +86,9 @@ const renderHeader = () => (
       <FlatList
         data={filteredJobs}
         renderItem={renderJob}
-        keyExtractor={(item, index) => item?.job_id?.toString?.() || `job-${index}`}
+        keyExtractor={(item, index) =>
+          item?.job_id?.toString?.() || `job-${index}`
+        }
       />
       <AvailableModal
         visible={!!selectedJob}

@@ -124,7 +124,10 @@ const UnitSelect: React.FC<Props> = ({
                     >
                       <Text
                         numberOfLines={1}
-                        style={[styles.itemText, active && styles.itemTextActive]}
+                        style={[
+                          styles.itemText,
+                          active && styles.itemTextActive,
+                        ]}
                       >
                         {opt.label}
                       </Text>
@@ -173,7 +176,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     elevation: 4,
   },
-  menuTitle: { fontWeight: 'bold', fontSize: 14, color: '#111', marginBottom: 6 },
+  menuTitle: {
+    fontWeight: 'bold',
+    fontSize: 14,
+    color: '#111',
+    marginBottom: 6,
+  },
   menuList: { maxHeight: 360 },
   item: { paddingVertical: 10, paddingHorizontal: 8, borderRadius: 8 },
   itemActive: { backgroundColor: '#e8f1ff' },

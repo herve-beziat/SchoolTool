@@ -1,7 +1,4 @@
-import {
-  View,
-  SafeAreaView,
-} from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import LoginWithGoogle from '@/components/auth/GoogleAuth';
 import LogtimeChart from '@/components/dashboard/logtimes';
 import GoogleCalendarWidget from '@/components/dashboard/googleCalendar';
@@ -26,12 +23,12 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={globalStyles.mainContainer}>
       <Header />
-        <View style={globalStyles.widgetContainer}>
-          <LogtimeChart />
-        </View>
-        <View style={globalStyles.widgetContainer}>
-          <GoogleCalendarWidget />
-        </View>
+      <View style={globalStyles.widgetContainer}>
+        <LogtimeChart />
+      </View>
+      <View style={globalStyles.widgetContainer}>
+        <GoogleCalendarWidget />
+      </View>
     </SafeAreaView>
   );
 }
