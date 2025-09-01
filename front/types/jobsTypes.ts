@@ -39,6 +39,7 @@ export interface JobInProgress {
   job_duration?: number;
   job_max_students?: number;
   click_date?: string;
+  is_lead?: boolean;
 }
 
 export interface JobUnit {

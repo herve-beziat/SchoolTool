@@ -491,6 +491,7 @@ class Student_Access
         ];
         $this->controller->load->model('Registration_Model');
         $reg = $this->controller->Registration_Model->getRegistration($regparams);
+        // var_dump($reg);
         if (count($reg) == 1 && $this->controller->Status()->IsValid()) {
             $params['click'] = '1';
 

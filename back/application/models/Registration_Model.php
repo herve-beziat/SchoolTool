@@ -36,8 +36,17 @@ class Registration_Model extends LPTF_Model
             ['comment', 'optional', 'none'], ['corrector', 'optional', 'string'],
             ['promotion_id', 'optional', 'number'], ['promotion_name', 'optional', 'string'],
             ['lead_github', 'optional', 'string'], ['lead_plesk', 'optional', 'string'],
-            ['member_firstname', 'optional', 'string'], ['member_lastname', 'optional', 'string']
+            ['member_firstname', 'optional', 'string'], ['member_lastname', 'optional', 'string'], ['is_lead', 'optional', 'boolean']
         ];
+        
+         $is_lead = false;
+        if (array_key_exists('is_lead', $params))
+        {
+            if (!array_key_exists('lead_email', $params)) $params['lead_email'] = '';
+            $is_lead = true;
+            unset($params['is_lead']);
+        }
+
         if ($this->api_helper->checkParameters($params, $constraints) == false) {
             return ($this->Status()->PreconditionFailed());
         }
@@ -48,7 +57,19 @@ class Registration_Model extends LPTF_Model
 
         $query = $this->db->get($this->table);
 
-        return ($query->result_array());
+        $result = $query->result_array();
+
+        if ($is_lead) {
+            $email = $this->token_helper->get_payload()['user_email'];
+            if($email === $result[0]['lead_email']) {
+                $result[0]['is_lead'] = true;
+            }
+            else {
+                $result[0]['is_lead'] = false;
+            }
+        }
+
+        return $result;
     }
 
     public function putRegistration($params)
