@@ -64,7 +64,7 @@ const ProgressModal: React.FC<ProgressModalProps> = ({
               job_is_done: '',
               correction_date: '',
               order: 'job_unit_name',
-              is_lead: ''
+              is_lead: '',
             },
           });
 
@@ -203,18 +203,19 @@ const ProgressModal: React.FC<ProgressModalProps> = ({
                   </Pressable>
 
                   {jobData && !jobData.click_date && (
-                  <Pressable
-                    style={[styles.button, styles.doneBtn]}
-                    onPress={handleMarkAsDone}
-                  >
-                    <Text style={styles.buttonText}>Rendre le projet</Text>
-                  </Pressable>
+                    <Pressable
+                      style={[styles.button, styles.doneBtn]}
+                      onPress={handleMarkAsDone}
+                    >
+                      <Text style={styles.buttonText}>Rendre le projet</Text>
+                    </Pressable>
                   )}
                 </View>
 
                 {jobData &&
                   group &&
-                  jobData.job_max_students && jobData.is_lead == true &&
+                  jobData.job_max_students &&
+                  jobData.is_lead == true &&
                   group?.member?.length < Number(jobData.job_max_students) &&
                   !jobData.click_date && (
                     <Pressable
