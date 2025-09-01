@@ -88,12 +88,6 @@ const AbsenceFormModal: React.FC<Props> = ({ visible, onClose, onSuccess }) => {
         imageName: fileName,
         fileType: mimeType,
       }));
-
-      console.log('📎 Fichier sélectionné :', {
-        fileName,
-        mimeType,
-        uri,
-      });
     }
   };
 
