@@ -1,30 +1,35 @@
 # 📘 SchoolTool
 
 ## 🚀 Présentation
-**SchoolTool** est une application interne développée pour **La Plateforme**.  
-Elle permet aux étudiants, enseignants et administrateurs de gérer et consulter :  
-- Emplois du temps  
-- Notes et compétences  
-- Absences et justificatifs  
-- Informations liées aux promotions et aux étudiants  
 
-Le projet repose sur une architecture **multi-services** basée sur **Docker** :  
-- `front` : application mobile en **React Native (Expo)**  
-- `back` : API en **PHP CodeIgniter** (gestion des données et règles métier)  
-- `auth` : service d’**authentification OAuth2 (Google)** en CodeIgniter  
-- `db` : base de données **MariaDB**  
+**SchoolTool** est une application interne développée pour **La Plateforme**.  
+Elle permet aux étudiants, enseignants et administrateurs de gérer et consulter :
+
+- Emplois du temps
+- Notes et compétences
+- Absences et justificatifs
+- Informations liées aux promotions et aux étudiants
+
+Le projet repose sur une architecture **multi-services** basée sur **Docker** :
+
+- `front` : application mobile en **React Native (Expo)**
+- `back` : API en **PHP CodeIgniter** (gestion des données et règles métier)
+- `auth` : service d’**authentification OAuth2 (Google)** en CodeIgniter
+- `db` : base de données **MariaDB**
 
 ---
 
 ## 🛠️ Technologies
-- **Frontend** : React Native (Expo, Node 18)  
-- **Backend & Auth** : PHP CodeIgniter  
-- **Base de données** : MariaDB  
-- **Conteneurisation** : Docker & Docker Compose  
+
+- **Frontend** : React Native (Expo, Node 18)
+- **Backend & Auth** : PHP CodeIgniter
+- **Base de données** : MariaDB
+- **Conteneurisation** : Docker & Docker Compose
 
 ---
 
 ## 📂 Structure du projet
+
 ```bash
 schooltool/
 │── docker-compose.yml
@@ -37,8 +42,8 @@ schooltool/
 ## ⚙️ Installation & Lancement
 
 ### 1️⃣ Prérequis
-- [Docker](https://docs.docker.com/get-docker/)  
-- [Docker Compose](https://docs.docker.com/compose/)  
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
 ### 2️⃣ Cloner le projet
 git clone [https://github.com/alexandre-aloesode/SchoolTool.git]
@@ -94,3 +99,4 @@ GOOGLE_CLIENT_SECRET: "ENTER YOUR SECRET HERE",
 <!-- In the /back and /auth folders, rename the application/config/constants.php.example file into constants.php -->
 
 <!-- docker compose exec front npx expo start --tunnel -->
+```
