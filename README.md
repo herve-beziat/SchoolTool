@@ -1,14 +1,70 @@
-# SchoolTool
+# 📘 SchoolTool
 
-An intranet for schools, connecting students and staff
+## 🚀 Présentation
+**SchoolTool** est une application interne développée pour **La Plateforme**.  
+Elle permet aux étudiants, enseignants et administrateurs de gérer et consulter :  
+- Emplois du temps  
+- Notes et compétences  
+- Absences et justificatifs  
+- Informations liées aux promotions et aux étudiants  
 
-# Building the container (FIRST TIME ONLY)
+Le projet repose sur une architecture **multi-services** basée sur **Docker** :  
+- `front` : application mobile en **React Native (Expo)**  
+- `back` : API en **PHP CodeIgniter** (gestion des données et règles métier)  
+- `auth` : service d’**authentification OAuth2 (Google)** en CodeIgniter  
+- `db` : base de données **MariaDB**  
 
+---
+
+## 🛠️ Technologies
+- **Frontend** : React Native (Expo, Node 18)  
+- **Backend & Auth** : PHP CodeIgniter  
+- **Base de données** : MariaDB  
+- **Conteneurisation** : Docker & Docker Compose  
+
+---
+
+## 📂 Structure du projet
+```bash
+schooltool/
+│── docker-compose.yml
+│── front/       # Application mobile (React Native / Expo)
+│── back/        # API principale (CodeIgniter)
+│── auth/        # Service d’authentification (CodeIgniter)
+└── db/          # Base de données (MariaDB via Docker)
+---
+
+## ⚙️ Installation & Lancement
+
+### 1️⃣ Prérequis
+- [Docker](https://docs.docker.com/get-docker/)  
+- [Docker Compose](https://docs.docker.com/compose/)  
+
+### 2️⃣ Cloner le projet
+git clone [https://github.com/alexandre-aloesode/SchoolTool.git]
+
+### 3️⃣ Lancer les services
 docker compose up --build
 
-# Starting the project
+Les conteneurs suivants seront lancés :
 
-docker compose up
+db → MariaDB (port 3307)
+
+back → API CodeIgniter (port 8000)
+
+auth → Service Auth CodeIgniter (port 8001)
+
+front → Application mobile Expo (ports 8082, 19000-19002)
+
+
+### 4️⃣ Accès rapide
+
+Front (Expo) : http://localhost:8082
+
+API (Back) : http://localhost:8000
+
+Auth Service : http://localhost:8001
+
 
 # Database creation and hydration
 
@@ -17,7 +73,7 @@ docker compose up
 MYSQL_PWD=root mysql -h 127.0.0.1 -P 3307 -u root < <path_to_the_database_folder>/createAuth.sql
 MYSQL_PWD=root mysql -h 127.0.0.1 -P 3307 -u root < <path_to_the_database_folder>/createApi.sql
 MYSQL_PWD=root mysql -h 127.0.0.1 -P 3307 -u root < <path_to_the_database_folder>/hydrateAuth.sql
-MYSQL_PWD=root mysql -h 127.0.0.1 -P 3307 -u root < <path_to_the_database_folder>/hydrateAuth.sql
+MYSQL_PWD=root mysql -h 127.0.0.1 -P 3307 -u root < <path_to_the_database_folder>/hydrateApi.sql
 
 # Config files
 
