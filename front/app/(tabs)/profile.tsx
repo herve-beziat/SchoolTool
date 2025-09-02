@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import ProfileScreen from '@/components/profile/StudentProfile';
 import SkillScreen from '@/components/profile/StudentSkills';
+import DocumentsScreen from '@/components/profile/StudentDocuments';
 import Header from '@/components/global/Header';
 import { globalStyles } from '@/styles/globalStyles';
 
@@ -20,6 +21,8 @@ const ProfileMain = () => {
         return <ProfileScreen />;
       case 'skills':
         return <SkillScreen />;
+      case 'documents':
+        return <DocumentsScreen />;
       default:
         return <ProfileScreen />;
     }
@@ -46,6 +49,15 @@ const ProfileMain = () => {
           onPress={() => setActiveTab('skills')}
         >
           <Text style={styles.tabText}>Compétences</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            globalStyles.widgetNavTab,
+            activeTab === 'documents' && globalStyles.widgetNavActiveTab,
+          ]}
+          onPress={() => setActiveTab('documents')}
+        >
+          <Text style={styles.tabText}>Documents</Text>
         </TouchableOpacity>
       </View>
       <View
