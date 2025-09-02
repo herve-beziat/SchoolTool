@@ -54,15 +54,17 @@ export default function DocumentsScreen() {
   const [loadingType, setLoadingType] = useState<DocumentType | null>(null);
   const [refreshing, setRefreshing] = useState(false);
 
-  const items = useMemo<{
-    type: DocumentType;
-  }[]>(
+  const items = useMemo<
+    {
+      type: DocumentType;
+    }[]
+  >(
     () => [
       { type: 'certificate' },
       { type: 'grades' },
       { type: 'attestation' },
     ],
-    []
+    [],
   );
 
   const onRefresh = useCallback(async () => {
@@ -76,55 +78,55 @@ export default function DocumentsScreen() {
   }, []);
 
   // --- Core actions ---------------------------------------------------------
-//   const handleOpen = async (type: DocumentType) => {
-//     try {
-//       setLoadingType(type);
+  //   const handleOpen = async (type: DocumentType) => {
+  //     try {
+  //       setLoadingType(type);
 
-//       // 1) Récupérer l'URL du document depuis l'API
-//       const { url, filename } = await fetchDocumentUrl(type);
+  //       // 1) Récupérer l'URL du document depuis l'API
+  //       const { url, filename } = await fetchDocumentUrl(type);
 
-//       // 2) Télécharger dans un dossier temporaire
-//       const tmp = FileSystem.cacheDirectory + (filename || `${type}.pdf`);
-//       const dl = await FileSystem.downloadAsync(url, tmp);
+  //       // 2) Télécharger dans un dossier temporaire
+  //       const tmp = FileSystem.cacheDirectory + (filename || `${type}.pdf`);
+  //       const dl = await FileSystem.downloadAsync(url, tmp);
 
-//       if (dl.status !== 200) throw new Error('Téléchargement impossible');
+  //       if (dl.status !== 200) throw new Error('Téléchargement impossible');
 
-//       // 3) Ouvrir/Partager le fichier
-//       if (Platform.OS === 'ios' || (await Sharing.isAvailableAsync())) {
-//         await Sharing.shareAsync(dl.uri);
-//       } else {
-//         // Sur Android, beaucoup d'apps savent ouvrir un PDF depuis le partage
-//         await Sharing.shareAsync(dl.uri);
-//       }
+  //       // 3) Ouvrir/Partager le fichier
+  //       if (Platform.OS === 'ios' || (await Sharing.isAvailableAsync())) {
+  //         await Sharing.shareAsync(dl.uri);
+  //       } else {
+  //         // Sur Android, beaucoup d'apps savent ouvrir un PDF depuis le partage
+  //         await Sharing.shareAsync(dl.uri);
+  //       }
 
-//       Toast.show({ type: 'success', text1: 'Document prêt ✨' });
-//     } catch (e: any) {
-//       console.error(e);
-//       Toast.show({
-//         type: 'error',
-//         text1: "Oups, impossible d'ouvrir le document",
-//         text2: e?.message ?? 'Réessayez dans un instant',
-//       });
-//     } finally {
-//       setLoadingType(null);
-//     }
-//   };
+  //       Toast.show({ type: 'success', text1: 'Document prêt ✨' });
+  //     } catch (e: any) {
+  //       console.error(e);
+  //       Toast.show({
+  //         type: 'error',
+  //         text1: "Oups, impossible d'ouvrir le document",
+  //         text2: e?.message ?? 'Réessayez dans un instant',
+  //       });
+  //     } finally {
+  //       setLoadingType(null);
+  //     }
+  //   };
 
-//   const fetchDocumentUrl = async (
-//     type: DocumentType
-//   ): Promise<{ url: string; filename?: string }> => {
+  //   const fetchDocumentUrl = async (
+  //     type: DocumentType
+  //   ): Promise<{ url: string; filename?: string }> => {
 
-//     const endpoint =
-//       type === 'certificate'
-//         ? '/documents/certificate'
-//         : type === 'grades'
-//         ? '/documents/grades/latest'
-//         : '/documents/attestation';
+  //     const endpoint =
+  //       type === 'certificate'
+  //         ? '/documents/certificate'
+  //         : type === 'grades'
+  //         ? '/documents/grades/latest'
+  //         : '/documents/attestation';
 
-//     const res = await ApiActions.get(endpoint);
-//     if (!res?.url) throw new Error("URL de document manquante");
-//     return res as { url: string; filename?: string };
-//   };
+  //     const res = await ApiActions.get(endpoint);
+  //     if (!res?.url) throw new Error("URL de document manquante");
+  //     return res as { url: string; filename?: string };
+  //   };
 
   // --- UI -------------------------------------------------------------------
   return (
@@ -168,10 +170,7 @@ function DocumentRow({
 
   return (
     <Pressable
-      style={({ pressed }) => [
-        styles.row,
-        { opacity: pressed ? 0.9 : 1 },
-      ]}
+      style={({ pressed }) => [styles.row, { opacity: pressed ? 0.9 : 1 }]}
       onPress={onPress}
       android_ripple={{ color: ACCENT_SOFT }}
     >
