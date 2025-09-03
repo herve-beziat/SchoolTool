@@ -202,7 +202,7 @@ const ProgressModal: React.FC<ProgressModalProps> = ({
                     <Text style={styles.buttonText}>Rapport</Text>
                   </Pressable>
 
-                  {jobData && !jobData.click_date && (
+                  {jobData && !jobData.click_date && jobData.is_lead == true && (
                     <Pressable
                       style={[styles.button, styles.doneBtn]}
                       onPress={handleMarkAsDone}

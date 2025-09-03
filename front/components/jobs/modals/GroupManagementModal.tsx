@@ -91,13 +91,21 @@ const GroupManagementModal: React.FC<GroupManagementModalProps> = ({
   };
 
   const askToJoinGroup = async (groupId: number | string) => {
-    await ApiActions.post({
+    const request = await ApiActions.post({
       route: '/waitinglist',
       params: {
         group_id: groupId,
       },
     });
-    fetchGroups();
+    if (request?.status == 200) {
+      Toast.show({
+        type: 'success',
+        text1: 'Succès',
+        text2: "Demande d'adhésion au groupe envoyée.",
+      });
+      onClose();
+      onGroupCreated?.();
+    }
   };
 
   return (
