@@ -70,6 +70,7 @@ services:
     environment:
       API_URL: 'http://localhost:8000'
       AUTH_URL: 'http://localhost:8001'
+      EXPO_TOKEN: ${EXPO_TOKEN} 
 
 volumes:
   db_data:
