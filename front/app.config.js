@@ -10,7 +10,7 @@ export default () => ({
     scheme: 'com.schooltool.authsessiongoogle',
     icon: './assets/images/icon.png',
     userInterfaceStyle: 'automatic',
-    newArchEnabled: true,
+    newArchEnabled: false,
 
     android: {
       package: 'com.schooltool.authsessiongoogle',
