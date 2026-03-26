@@ -73,3 +73,5 @@ docker-compose.override.yml
 .env.production
 .env.test
 .env*.local
+
+.phpunit.result.cache
