@@ -10,7 +10,7 @@ export default () => ({
     scheme: 'com.schooltool.authsessiongoogle',
     icon: './assets/images/icon.png',
     userInterfaceStyle: 'automatic',
-    newArchEnabled: false,
+    newArchEnabled: true,
 
     android: {
       package: 'com.schooltool.authsessiongoogle',
@@ -60,9 +60,7 @@ export default () => ({
       LPTF_API_URL: process.env.LPTF_API_URL,
       LPTF_AUTH_API_URL: process.env.LPTF_AUTH_API_URL,
 
-      eas: {
-        projectId: 'e427c0d9-fe3e-4038-a31e-f4a072fc7a79',
-      },
+      
     },
   },
 });

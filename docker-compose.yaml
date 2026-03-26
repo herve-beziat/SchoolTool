@@ -59,6 +59,7 @@ services:
     stdin_open: true
     volumes:
       - ./front:/app
+      - /app/node_modules
     ports:
       - '8082:8081'
       - '19000:19000' # Metro Bundler
