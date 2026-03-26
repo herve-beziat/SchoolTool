@@ -7,6 +7,9 @@ RUN apt-get update && apt-get upgrade -y \
     && docker-php-ext-install mysqli pdo pdo_mysql zip \
     && a2enmod rewrite
 
+# Installation de Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
 # Définition des permissions correctes
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
