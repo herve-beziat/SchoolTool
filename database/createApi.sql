@@ -522,3 +522,7 @@ CREATE TABLE `acquiered_skill` (
   CONSTRAINT `acquiered_skill_registration_fk` FOREIGN KEY (`registration_fk`) REFERENCES `registration` (`id`) ON DELETE CASCADE,
   CONSTRAINT `acquiered_skill_student_fk` FOREIGN KEY (`student_fk`) REFERENCES `student` (`id`) ON DELETE CASCADE
 );
+-- Utilisateur applicatif avec droits limités (principe du moindre privilège)
+CREATE USER IF NOT EXISTS 'schooltool_app'@'%' IDENTIFIED BY 'app_password';
+GRANT SELECT, INSERT, UPDATE, DELETE ON schooltool_api.* TO 'schooltool_app'@'%';
+FLUSH PRIVILEGES;

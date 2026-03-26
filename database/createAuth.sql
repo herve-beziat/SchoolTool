@@ -54,3 +54,8 @@ CREATE TABLE `secret` (
   KEY `user_id_fk` (`user_id`) USING BTREE,
   CONSTRAINT `secret_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 );
+
+-- Utilisateur applicatif avec droits limités (principe du moindre privilège)
+CREATE USER IF NOT EXISTS 'schooltool_auth_app'@'%' IDENTIFIED BY 'auth_password';
+GRANT SELECT, INSERT, UPDATE, DELETE ON schooltool_auth.* TO 'schooltool_auth_app'@'%';
+FLUSH PRIVILEGES;
