@@ -32,7 +32,7 @@ export default function LoginWithGoogle() {
   const [loading, setLoading] = useState(true);
 
   const redirectUri = isExpoGo
-    ? 'https://auth.expo.io/@alexaloesode/schooltool'
+    ? 'https://auth.expo.io/@herve-dev/schooltool'
     : AuthSession.makeRedirectUri();
 
   const googleClientId = isExpoGo

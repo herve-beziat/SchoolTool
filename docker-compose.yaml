@@ -7,6 +7,8 @@ services:
       - 3307:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
 
   back:
     build: ./back
@@ -57,6 +59,7 @@ services:
     stdin_open: true
     volumes:
       - ./front:/app
+      - /app/node_modules
     ports:
       - '8082:8081'
       - '19000:19000' # Metro Bundler
@@ -68,6 +71,7 @@ services:
     environment:
       API_URL: 'http://localhost:8000'
       AUTH_URL: 'http://localhost:8001'
+      EXPO_TOKEN: ${EXPO_TOKEN}
 
 volumes:
   db_data:

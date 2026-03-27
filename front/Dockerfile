@@ -1,17 +1,17 @@
-FROM node:18
+# ── STAGE BUILD ──────────────────────────────────────────────────────────────
+FROM node:20 AS build
 
 WORKDIR /app
 
-# Copie les manifests + npmrc d'abord pour maximiser le cache
-COPY package.json package-lock.json ./
+COPY package.json ./
+RUN npm install --legacy-peer-deps
 
-# Install déterministe (dev deps gardées pour Expo)
-RUN npm ci
-
-# Puis le reste du code
 COPY . .
+RUN npx expo export -p web
 
-EXPOSE 8081
-EXPOSE 19000 19001 19002
+# ── STAGE PROD ───────────────────────────────────────────────────────────────
+FROM nginx:alpine AS prod
 
-CMD ["npx", "expo", "start", "--tunnel"]
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80

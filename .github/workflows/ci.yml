@@ -1,20 +1,17 @@
-name: CI/CD Pipeline
+name: CI Pipeline
 
 on:
+  # Déclenché sur chaque push sur main et develop, et sur chaque PR
   push:
-    branches:
-      - main
+    branches: [main, develop]
   pull_request:
 
 jobs:
-  build:
+  # ── JOB 1 : Lint ─────────────────────────────────────────────────────────
+  # Vérifie la qualité du code front avec ESLint
+  # Premier job — bloque tout le pipeline si le code n'est pas propre
+  lint:
     runs-on: ubuntu-latest
-
-    services:
-      docker:
-        image: docker:24.0.2
-        options: --privileged
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,33 +19,61 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install frontend dependencies
-        run: |
-          cd front
-          npm install
+        run: cd front && npm install
 
-      - name: Run frontend tests
-        run: |
-          cd front
-          npm test -- --ci
+      - name: Run ESLint
+        run: cd front && npm run lint
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+  # ── JOB 2 : Tests PHPUnit ────────────────────────────────────────────────
+  # Lance les tests unitaires du back CodeIgniter
+  # Nécessite que le lint passe avant de s'exécuter
+  test-back:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Build Docker Compose
-        run: docker compose -f docker-compose.yml build
+      - name: Install Composer dependencies
+        run: cd back && composer install
 
-      - name: Send email notification
-        uses: dawidd6/action-send-mail@v3
+      - name: Run PHPUnit tests
+        run: cd back && ./vendor/bin/phpunit --colors=always --testdox
+
+  # ── JOB 3 : Tests Jest ───────────────────────────────────────────────────
+  # Lance les tests unitaires du front React Native
+  # Nécessite que le lint passe avant de s'exécuter
+  # Tourne en parallèle avec test-back
+  test-front:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: Nouvelle action sur le repo!
-          body: "Une action a été déclenchée sur la branche main."
-          to: ${{ secrets.EMAIL_USERNAME }}
-          from: ${{ secrets.EMAIL_USERNAME }}
-          secure: true
+          node-version: 20
+
+      - name: Install frontend dependencies
+        run: cd front && npm install
+
+      - name: Run Jest tests
+        run: cd front && npm test -- --ci --watchAll=false components/__tests__/ThemedComponents.test.tsx
+
+  # ── JOB 4 : Build Docker ─────────────────────────────────────────────────
+  # Build les images de production
+  # Nécessite que les tests back ET front passent avant de s'exécuter
+  build:
+    runs-on: ubuntu-latest
+    needs: [test-back, test-front]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build production images
+        run: docker compose -f docker-compose.prod.yml build
