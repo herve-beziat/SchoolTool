@@ -25,6 +25,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
 COPY --from=build /var/www/html /var/www/html
+COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
 
 EXPOSE 80
 CMD ["apache2ctl", "-D", "FOREGROUND"]
