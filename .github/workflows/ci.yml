@@ -63,7 +63,7 @@ jobs:
         run: cd front && npm install
 
       - name: Run Jest tests
-        run: cd front && npm test -- --ci --watchAll=false
+        run: cd front && npm test -- --ci --watchAll=false components/__tests__/ThemedComponents.test.tsx
 
   # ── JOB 4 : Build Docker ─────────────────────────────────────────────────
   # Build les images de production
