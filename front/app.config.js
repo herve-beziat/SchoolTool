@@ -59,8 +59,6 @@ export default () => ({
       EXPO_GO_GOOGLE_CLIENT_SECRET: process.env.EXPO_GO_GOOGLE_CLIENT_SECRET,
       LPTF_API_URL: process.env.LPTF_API_URL,
       LPTF_AUTH_API_URL: process.env.LPTF_AUTH_API_URL,
-
-      
     },
   },
 });

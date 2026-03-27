@@ -36,12 +36,12 @@ Ce document décrit une organisation Git simple et efficace (Gitflow simplifié)
 
 ## 3. Branches temporaires
 
-| Type    | Convention de nommage        | Usage                                                              |
-|---------|------------------------------|--------------------------------------------------------------------|
-| Feature | `feature/nom-fonctionnalite` | Nouvelle fonctionnalité — créées depuis `develop`                  |
-| Bugfix  | `bugfix/nom-du-bug`          | Correction de bug                                                  |
-| Release | `release/x.y.z`              | Préparation d'une release — fusionnées dans `main` et `develop`    |
-| Hotfix  | `hotfix/urgent`              | Correctif rapide en production — créées depuis `main`              |
+| Type    | Convention de nommage        | Usage                                                           |
+| ------- | ---------------------------- | --------------------------------------------------------------- |
+| Feature | `feature/nom-fonctionnalite` | Nouvelle fonctionnalité — créées depuis `develop`               |
+| Bugfix  | `bugfix/nom-du-bug`          | Correction de bug                                               |
+| Release | `release/x.y.z`              | Préparation d'une release — fusionnées dans `main` et `develop` |
+| Hotfix  | `hotfix/urgent`              | Correctif rapide en production — créées depuis `main`           |
 
 **Règles :**
 
@@ -69,20 +69,20 @@ type(scope): description courte à l'infinitif
 ```
 
 - **`type`** : nature du changement
-- **`scope`** *(optionnel)* : partie concernée du projet
+- **`scope`** _(optionnel)_ : partie concernée du projet
 - **`description`** : action claire et concise
 
 ### Types courants
 
-| Type       | Usage                                               |
-|------------|-----------------------------------------------------|
-| `feat`     | Ajout d'une nouvelle fonctionnalité                 |
-| `fix`      | Correction de bug                                   |
-| `chore`    | Configuration, infrastructure, outillage            |
-| `docs`     | Documentation                                       |
-| `test`     | Ajout ou modification de tests                      |
-| `refactor` | Amélioration du code sans changement fonctionnel    |
-| `style`    | Mise en forme, indentation (pas de logique)         |
+| Type       | Usage                                            |
+| ---------- | ------------------------------------------------ |
+| `feat`     | Ajout d'une nouvelle fonctionnalité              |
+| `fix`      | Correction de bug                                |
+| `chore`    | Configuration, infrastructure, outillage         |
+| `docs`     | Documentation                                    |
+| `test`     | Ajout ou modification de tests                   |
+| `refactor` | Amélioration du code sans changement fonctionnel |
+| `style`    | Mise en forme, indentation (pas de logique)      |
 
 ### Exemples
 
@@ -154,14 +154,14 @@ git commit -m "test(auth): add login tests"
 
 ## 7. Récapitulatif
 
-| Branche      | Rôle                        |
-|--------------|-----------------------------|
-| `main`       | Production                  |
-| `develop`    | Développement               |
-| `feature/*`  | Nouvelles fonctionnalités   |
-| `bugfix/*`   | Corrections de bugs         |
-| `hotfix/*`   | Correctifs urgents en prod  |
-| `release/*`  | Préparation de release      |
+| Branche     | Rôle                       |
+| ----------- | -------------------------- |
+| `main`      | Production                 |
+| `develop`   | Développement              |
+| `feature/*` | Nouvelles fonctionnalités  |
+| `bugfix/*`  | Corrections de bugs        |
+| `hotfix/*`  | Correctifs urgents en prod |
+| `release/*` | Préparation de release     |
 
 **À retenir :**
 

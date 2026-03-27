@@ -11,40 +11,110 @@
       "item": [
         {
           "name": "GET Promotion - Cas nominal",
-          "event": [{"listen": "test","script": {"type": "text/javascript","exec": ["pm.test('Status 200', function() { pm.response.to.have.status(200); });","pm.test('Réponse est un tableau', function() { pm.expect(pm.response.json()).to.be.an('array'); });"]}}],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function() { pm.response.to.have.status(200); });",
+                  "pm.test('Réponse est un tableau', function() { pm.expect(pm.response.json()).to.be.an('array'); });"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "GET",
             "header": [{ "key": "Token", "value": "{{token}}" }],
-            "url": {"raw": "{{base_url}}/promotion?promotion_name=","host": ["{{base_url}}"],"path": ["promotion"],"query": [{ "key": "promotion_name", "value": "" }]}
+            "url": {
+              "raw": "{{base_url}}/promotion?promotion_name=",
+              "host": ["{{base_url}}"],
+              "path": ["promotion"],
+              "query": [{ "key": "promotion_name", "value": "" }]
+            }
           }
         },
         {
           "name": "GET Promotion - Sans token (pas de blocage)",
-          "event": [{"listen": "test","script": {"type": "text/javascript","exec": ["pm.test('Réponse 200 sans token', function() { pm.response.to.have.status(200); });"]}}],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Réponse 200 sans token', function() { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "GET",
             "header": [],
-            "url": {"raw": "{{base_url}}/promotion?promotion_name=","host": ["{{base_url}}"],"path": ["promotion"],"query": [{ "key": "promotion_name", "value": "" }]}
+            "url": {
+              "raw": "{{base_url}}/promotion?promotion_name=",
+              "host": ["{{base_url}}"],
+              "path": ["promotion"],
+              "query": [{ "key": "promotion_name", "value": "" }]
+            }
           }
         },
         {
           "name": "POST Promotion - Cas nominal",
-          "event": [{"listen": "test","script": {"type": "text/javascript","exec": ["pm.test('Status 200', function() { pm.response.to.have.status(200); });","pm.test('Retourne un ID', function() { pm.expect(pm.response.json()).to.be.a('number'); });"]}}],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function() { pm.response.to.have.status(200); });",
+                  "pm.test('Retourne un ID', function() { pm.expect(pm.response.json()).to.be.a('number'); });"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [{ "key": "Token", "value": "{{token}}" }],
-            "body": {"mode": "urlencoded","urlencoded": [{"key": "promotion_name","value": "CDA 2024"},{"key": "promotion_year","value": "2024"},{"key": "section_id","value": "1"}]},
-            "url": {"raw": "{{base_url}}/promotion","host": ["{{base_url}}"],"path": ["promotion"]}
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "promotion_name", "value": "CDA 2024" },
+                { "key": "promotion_year", "value": "2024" },
+                { "key": "section_id", "value": "1" }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/promotion",
+              "host": ["{{base_url}}"],
+              "path": ["promotion"]
+            }
           }
         },
         {
           "name": "POST Promotion - Champs manquants (412)",
-          "event": [{"listen": "test","script": {"type": "text/javascript","exec": ["pm.test('Erreur validation - 412', function() { pm.response.to.have.status(412); });"]}}],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Erreur validation - 412', function() { pm.response.to.have.status(412); });"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [{ "key": "Token", "value": "{{token}}" }],
-            "body": {"mode": "urlencoded","urlencoded": [{"key": "promotion_name","value": "CDA 2024"}]},
-            "url": {"raw": "{{base_url}}/promotion","host": ["{{base_url}}"],"path": ["promotion"]}
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [{ "key": "promotion_name", "value": "CDA 2024" }]
+            },
+            "url": {
+              "raw": "{{base_url}}/promotion",
+              "host": ["{{base_url}}"],
+              "path": ["promotion"]
+            }
           }
         }
       ]
@@ -54,29 +124,75 @@
       "item": [
         {
           "name": "GET Student - Cas nominal",
-          "event": [{"listen": "test","script": {"type": "text/javascript","exec": ["pm.test('Status 200', function() { pm.response.to.have.status(200); });","pm.test('Réponse est un tableau', function() { pm.expect(pm.response.json()).to.be.an('array'); });"]}}],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function() { pm.response.to.have.status(200); });",
+                  "pm.test('Réponse est un tableau', function() { pm.expect(pm.response.json()).to.be.an('array'); });"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "GET",
             "header": [{ "key": "Token", "value": "{{token}}" }],
-            "url": {"raw": "{{base_url}}/student?student_id=1","host": ["{{base_url}}"],"path": ["student"],"query": [{ "key": "student_id", "value": "1" }]}
+            "url": {
+              "raw": "{{base_url}}/student?student_id=1",
+              "host": ["{{base_url}}"],
+              "path": ["student"],
+              "query": [{ "key": "student_id", "value": "1" }]
+            }
           }
         },
         {
           "name": "GET Student - ID inexistant (tableau vide)",
-          "event": [{"listen": "test","script": {"type": "text/javascript","exec": ["pm.test('Tableau vide pour ID inexistant', function() { pm.expect(pm.response.json()).to.be.an('array').that.is.empty; });"]}}],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Tableau vide pour ID inexistant', function() { pm.expect(pm.response.json()).to.be.an('array').that.is.empty; });"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "GET",
             "header": [{ "key": "Token", "value": "{{token}}" }],
-            "url": {"raw": "{{base_url}}/student?student_id=999999","host": ["{{base_url}}"],"path": ["student"],"query": [{ "key": "student_id", "value": "999999" }]}
+            "url": {
+              "raw": "{{base_url}}/student?student_id=999999",
+              "host": ["{{base_url}}"],
+              "path": ["student"],
+              "query": [{ "key": "student_id", "value": "999999" }]
+            }
           }
         },
         {
           "name": "GET Student - Sans token (pas de blocage)",
-          "event": [{"listen": "test","script": {"type": "text/javascript","exec": ["pm.test('Réponse 200 sans token', function() { pm.response.to.have.status(200); });"]}}],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Réponse 200 sans token', function() { pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "GET",
             "header": [],
-            "url": {"raw": "{{base_url}}/student?student_id=1","host": ["{{base_url}}"],"path": ["student"],"query": [{ "key": "student_id", "value": "1" }]}
+            "url": {
+              "raw": "{{base_url}}/student?student_id=1",
+              "host": ["{{base_url}}"],
+              "path": ["student"],
+              "query": [{ "key": "student_id", "value": "1" }]
+            }
           }
         }
       ]
@@ -86,31 +202,86 @@
       "item": [
         {
           "name": "GET Calendar - Cas nominal",
-          "event": [{"listen": "test","script": {"type": "text/javascript","exec": ["pm.test('Status 200', function() { pm.response.to.have.status(200); });","pm.test('Réponse est un tableau', function() { pm.expect(pm.response.json()).to.be.an('array'); });"]}}],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function() { pm.response.to.have.status(200); });",
+                  "pm.test('Réponse est un tableau', function() { pm.expect(pm.response.json()).to.be.an('array'); });"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "GET",
             "header": [{ "key": "Token", "value": "{{token}}" }],
-            "url": {"raw": "{{base_url}}/calendar?name=","host": ["{{base_url}}"],"path": ["calendar"],"query": [{ "key": "name", "value": "" }]}
+            "url": {
+              "raw": "{{base_url}}/calendar?name=",
+              "host": ["{{base_url}}"],
+              "path": ["calendar"],
+              "query": [{ "key": "name", "value": "" }]
+            }
           }
         },
         {
           "name": "POST Calendar - Cas nominal",
-          "event": [{"listen": "test","script": {"type": "text/javascript","exec": ["pm.test('Status 200', function() { pm.response.to.have.status(200); });","pm.test('Retourne un ID', function() { pm.expect(pm.response.json()).to.be.a('number'); });"]}}],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', function() { pm.response.to.have.status(200); });",
+                  "pm.test('Retourne un ID', function() { pm.expect(pm.response.json()).to.be.a('number'); });"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [{ "key": "Token", "value": "{{token}}" }],
-            "body": {"mode": "urlencoded","urlencoded": [{"key": "promotion_id","value": "1"},{"key": "name","value": "Calendrier Test"},{"key": "status","value": "1"}]},
-            "url": {"raw": "{{base_url}}/calendar","host": ["{{base_url}}"],"path": ["calendar"]}
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "promotion_id", "value": "1" },
+                { "key": "name", "value": "Calendrier Test" },
+                { "key": "status", "value": "1" }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/calendar",
+              "host": ["{{base_url}}"],
+              "path": ["calendar"]
+            }
           }
         },
         {
           "name": "POST Calendar - Champs manquants (412)",
-          "event": [{"listen": "test","script": {"type": "text/javascript","exec": ["pm.test('Erreur validation - 412', function() { pm.response.to.have.status(412); });"]}}],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Erreur validation - 412', function() { pm.response.to.have.status(412); });"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [{ "key": "Token", "value": "{{token}}" }],
-            "body": {"mode": "urlencoded","urlencoded": [{"key": "name","value": "Calendrier Test"}]},
-            "url": {"raw": "{{base_url}}/calendar","host": ["{{base_url}}"],"path": ["calendar"]}
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [{ "key": "name", "value": "Calendrier Test" }]
+            },
+            "url": {
+              "raw": "{{base_url}}/calendar",
+              "host": ["{{base_url}}"],
+              "path": ["calendar"]
+            }
           }
         }
       ]
