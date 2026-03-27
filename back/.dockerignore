@@ -1,0 +1,23 @@
+# Dépendances
+vendor/
+
+# Tests
+application/tests/
+.phpunit.result.cache
+
+# Logs et cache
+application/logs/*
+application/cache/*
+
+# Fichiers sensibles
+application/config/database.php
+application/config/constants.php
+application/helpers/token_helper.php
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore

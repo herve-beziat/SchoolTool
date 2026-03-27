@@ -66,7 +66,6 @@ Thumbs.db
 
 # 🚀 DOCKER
 docker-compose.override.yml
-.dockerignore
 .env
 .env.local
 .env.development
