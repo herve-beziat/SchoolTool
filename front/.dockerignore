@@ -1,0 +1,18 @@
+# Dépendances
+node_modules/
+
+# Expo
+.expo/
+.expo-shared/
+dist/
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Logs
+npm-debug.log*
